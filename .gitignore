@@ -1,0 +1,10 @@
+.PKGREPO
+MD5SUM
+*jpg
+*md5sum
+*footprint
+*~
+*.cards.tar*
+
+# MkDocs
+site/

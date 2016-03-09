@@ -1,0 +1,35 @@
+site_name: P-Linux-Core
+site_url: https://P-Linux.github.io/P-Linux-Core/
+site_description: Scripts, programs, documentation for compiling, installing and using a P-Linux system.
+site_author: peter1000
+site_favicon: images/p_linux_favicon.ico
+
+repo_url: https://github.com/P-Linux/P-Linux-Core/
+
+pages:
+- Home: index.md
+- Install-ISO:
+    - 00. Build A P-Linux Install ISO:              build_install_iso/00_build_an_install_iso.md
+    - 01. Host System Requirements:                 build_install_iso/01_host_system_requirements.md
+    - 02. Setting Common Variables:                 build_install_iso/02_setting_common_variables.md
+    - 03. General Preparation:                      build_install_iso/03_general_preparation.md
+    - 04. Optional Preparation:                     build_install_iso/04_optional_preparation.md
+    - 05. PASS-1 (Constructing A Temporary System): build_install_iso/05_pass_1.md
+    - 06. PASS-2 (Building A Base P-Linux System):  build_install_iso/06_pass_2.md
+- About:
+    - Readme: about/readme.md
+    - License: about/license.md
+    - Release Notes: about/release-notes.md
+    - P-Linux vs. NuTyX-Linux: about/p_linux_vs_nutyx_linux.md
+
+markdown_extensions:
+    - toc:
+        permalink: 
+    - admonition:
+
+extra_css: [css/extra.css]
+
+use_directory_urls: true
+copyright: Copyright (c) 2016, <strong>peter1000</strong> <a href="https://github.com/peter1000">https://github.com/peter1000</a> and contributors.
+
+theme: 'bootstrap'
