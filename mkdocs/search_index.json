@@ -1,0 +1,319 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "P-Linux-Core\n\uf0c1\n\n\nScripts, programs, documentation for compiling, installing and using a P-Linux system.\n\n\n\n\n\nWeb Presence\n\uf0c1\n\n\n\n\nP-Linux-Core \nweb site - documentation\n\n\nP-Linux-Core \ngithub repository\n\n\n\n\nWhat is P-Linux?\n\uf0c1\n\n\nP-Linux\n is a NuTyX-Linux derived Linux system for 64-bit (x86_64) architecture based\non:\n\n\n\n\nNuTyX-Linux\n\n\nthe online documentation \nLinux From Scratch (LFS)\n\n\nthe online documentation \nBeyond Linux From Scratch", 
+            "title": "Home"
+        }, 
+        {
+            "location": "/#p-linux-core", 
+            "text": "Scripts, programs, documentation for compiling, installing and using a P-Linux system.", 
+            "title": "P-Linux-Core"
+        }, 
+        {
+            "location": "/#web-presence", 
+            "text": "P-Linux-Core  web site - documentation  P-Linux-Core  github repository", 
+            "title": "Web Presence"
+        }, 
+        {
+            "location": "/#what-is-p-linux", 
+            "text": "P-Linux  is a NuTyX-Linux derived Linux system for 64-bit (x86_64) architecture based\non:   NuTyX-Linux  the online documentation  Linux From Scratch (LFS)  the online documentation  Beyond Linux From Scratch", 
+            "title": "What is P-Linux?"
+        }, 
+        {
+            "location": "/build_install_iso/00_build_an_install_iso/", 
+            "text": "Build A P-Linux Install ISO\n\uf0c1\n\n\nThe aim of this short guide is to build /rebuild a 'Base P-Linux' installation ISO file.\n\n\n\n\n\nOverview\n\uf0c1\n\n\nThe target audience is a user who wants a clean and solid Linux distribution build from scratch.\n\n\nThis is based on the online documentation \nLinux From Scratch (LFS)\n and\nmost steps are automated and only a few require manual intervention.\nIt is still recommendet that you checkout the \nLinux From Scratch\n webpage.\n\n\n\n\nNote\n\n\nThe 64-bit build that results from this is considered a \"pure\" 64-bit system.\nThat is, \nit supports 64-bit executables only\n.\n\n\n\n\nThe finished ISO file can be burned on CD/DVD or written unto an USB-Stick. These can be used to install \nP-Linux\n\nsystems.\n\n\nHelper Scripts\n\uf0c1\n\n\nThere are helper scripts in the directory: \nP-Linux-Core/scripts/build_install_iso\n\n\nTo run a script excute: \nbash path_to_script\n\n\nEach section of this guide will mention related scripts.\n\n\nNOTE\n: most of the steps can be executed manually - but at the end of each section there are also references to\nrelated helper scripts.", 
+            "title": "Build A P-Linux Install ISO"
+        }, 
+        {
+            "location": "/build_install_iso/00_build_an_install_iso/#build-a-p-linux-install-iso", 
+            "text": "The aim of this short guide is to build /rebuild a 'Base P-Linux' installation ISO file.", 
+            "title": "Build A P-Linux Install ISO"
+        }, 
+        {
+            "location": "/build_install_iso/00_build_an_install_iso/#overview", 
+            "text": "The target audience is a user who wants a clean and solid Linux distribution build from scratch.  This is based on the online documentation  Linux From Scratch (LFS)  and\nmost steps are automated and only a few require manual intervention.\nIt is still recommendet that you checkout the  Linux From Scratch  webpage.   Note  The 64-bit build that results from this is considered a \"pure\" 64-bit system.\nThat is,  it supports 64-bit executables only .   The finished ISO file can be burned on CD/DVD or written unto an USB-Stick. These can be used to install  P-Linux \nsystems.", 
+            "title": "Overview"
+        }, 
+        {
+            "location": "/build_install_iso/00_build_an_install_iso/#helper-scripts", 
+            "text": "There are helper scripts in the directory:  P-Linux-Core/scripts/build_install_iso  To run a script excute:  bash path_to_script  Each section of this guide will mention related scripts.  NOTE : most of the steps can be executed manually - but at the end of each section there are also references to\nrelated helper scripts.", 
+            "title": "Helper Scripts"
+        }, 
+        {
+            "location": "/build_install_iso/01_host_system_requirements/", 
+            "text": "Host System Requirements\n\uf0c1\n\n\nWhat must the current operating system support.\n\n\n\n\n\nThis information is based on\n\nLinux From Scratch (LFS) - Host Requirements\n.\n\n\n\n\nNote\n\n\nThere might be differences between OUR REQUIREMENTS and what LFS suggests.\n\n\n\n\nRelated Helper Scripts\n\uf0c1\n\n\nSee also \nHelper Scripts\n\n\nversion-check.sh\n\uf0c1\n\n\nListing version numbers of critical development tools.\n\n\nlibrary-check.sh\n\uf0c1\n\n\nChecking for some library consistency.\n\n\nEXAMPLE output:\n\n\nroot [ /P-Linux-Core/scripts/build_install_iso ]# bash library-check.sh\n\n====\n Checking for some library consistency...\n\n       libgmp.la: not found\n       libmpfr.la: not found\n       libmpc.la: not found\n\n====\n NOTE....\n    -\n The files identified by this script should be all present\n    -\n           or all absent, but not only one or two present.\n\n\n\n\nHost System\n\uf0c1\n\n\nOFFICIAL TESTED HOST SYSTEM\n: \nP-Linux\n\n\nYour host system MUST be a Linux system for 64-bit (x86_64) architecture. At the moment there are no plans to\nsupport any other architecture.\n\n\nThe recommended host system in this order:\n\n\n\n\nP-Linux\n\n\nNuTyX-Linux\n\n\nbut most modern 64-bit Linux distributions should be fine too.\n\n\n\n\nRoot privileges\n on the host system are required.\n\n\nHost Required Software\n\uf0c1\n\n\nOFFICIAL TESTED HOST SOFTWARE\n: \nP-Linux\n with the versions indicated.\n\n\n\n\nNote\n\n\nMany distributions will place software headers into separate \ndevelopmet packages\n, often called\n\npackage-name-devel\n or \npackage-name-dev\n. Be sure to install those if your distribution provides them.\n\n\n\n\nFollowing software should be installed \nearlier or later versions\n of the listed software packages may work,\nbut have not been tested.\n\n\nBash 4.3.39\n\uf0c1\n\n\nBash: (/bin/sh should be a symbolic or hard link to bash)\n\n\n\n\nWarning\n\n\nMake sure you use only the \nBASH interpreter\n during this guide.\n\n\n\n\nBinutils 2.25.1\n\uf0c1\n\n\nBison 3.0.4\n\uf0c1\n\n\nBison: (/usr/bin/yacc should be a link to bison or small script that executes bison)\n\n\nBzip2 1.0.6\n\uf0c1\n\n\nCoreutils 8.24\n\uf0c1\n\n\nDiffutils 3.3\n\uf0c1\n\n\nFindutils 4.4.2\n\uf0c1\n\n\nGawk 4.1.3\n\uf0c1\n\n\nGawk: (/usr/bin/awk should be a link to gawk)\n\n\nGCC (including the C++ compiler) 5.3.0\n\uf0c1\n\n\nC++ 5.3.0\n\uf0c1\n\n\n\n\nNote\n\n\nIt is important to checking for some library consistency:\nSee \nRelated Helper Scripts\n.\n\n\n\n\nGlibc 2.22\n\uf0c1\n\n\nGrep 2.23\n\uf0c1\n\n\nGzip 1.6\n\uf0c1\n\n\nLinux Kernel 3.18.27\n\uf0c1\n\n\n\n\nNote\n\n\nAbsolute minimum required kernel version is: 2.6.32\n\n\nThe reason for the minimum kernel version requirement is\nthat we specify that version when building glibc at the recommendation of the developers.\nIt is also required by udev.\n\n\n\n\nM4 1.4.17\n\uf0c1\n\n\nMake 4.1\n\uf0c1\n\n\nPatch 2.7.5\n\uf0c1\n\n\nPerl 5.22.1\n\uf0c1\n\n\nSed 4.2.2\n\uf0c1\n\n\nTar 1.28\n\uf0c1\n\n\nTexinfo 6.0\n\uf0c1\n\n\nXz 5.2.2\n\uf0c1\n\n\nGit 2.7.1\n\uf0c1\n\n\nWget 1.17.1\n\uf0c1", 
+            "title": "Host System Requirements"
+        }, 
+        {
+            "location": "/build_install_iso/01_host_system_requirements/#host-system-requirements", 
+            "text": "What must the current operating system support.   This information is based on Linux From Scratch (LFS) - Host Requirements .   Note  There might be differences between OUR REQUIREMENTS and what LFS suggests.", 
+            "title": "Host System Requirements"
+        }, 
+        {
+            "location": "/build_install_iso/01_host_system_requirements/#related-helper-scripts", 
+            "text": "See also  Helper Scripts", 
+            "title": "Related Helper Scripts"
+        }, 
+        {
+            "location": "/build_install_iso/01_host_system_requirements/#version-checksh", 
+            "text": "Listing version numbers of critical development tools.", 
+            "title": "version-check.sh"
+        }, 
+        {
+            "location": "/build_install_iso/01_host_system_requirements/#library-checksh", 
+            "text": "Checking for some library consistency.  EXAMPLE output:  root [ /P-Linux-Core/scripts/build_install_iso ]# bash library-check.sh\n\n====  Checking for some library consistency...\n\n       libgmp.la: not found\n       libmpfr.la: not found\n       libmpc.la: not found\n\n====  NOTE....\n    -  The files identified by this script should be all present\n    -            or all absent, but not only one or two present.", 
+            "title": "library-check.sh"
+        }, 
+        {
+            "location": "/build_install_iso/01_host_system_requirements/#host-system", 
+            "text": "OFFICIAL TESTED HOST SYSTEM :  P-Linux  Your host system MUST be a Linux system for 64-bit (x86_64) architecture. At the moment there are no plans to\nsupport any other architecture.  The recommended host system in this order:   P-Linux  NuTyX-Linux  but most modern 64-bit Linux distributions should be fine too.   Root privileges  on the host system are required.", 
+            "title": "Host System"
+        }, 
+        {
+            "location": "/build_install_iso/01_host_system_requirements/#host-required-software", 
+            "text": "OFFICIAL TESTED HOST SOFTWARE :  P-Linux  with the versions indicated.   Note  Many distributions will place software headers into separate  developmet packages , often called package-name-devel  or  package-name-dev . Be sure to install those if your distribution provides them.   Following software should be installed  earlier or later versions  of the listed software packages may work,\nbut have not been tested.", 
+            "title": "Host Required Software"
+        }, 
+        {
+            "location": "/build_install_iso/01_host_system_requirements/#bash-4339", 
+            "text": "Bash: (/bin/sh should be a symbolic or hard link to bash)   Warning  Make sure you use only the  BASH interpreter  during this guide.", 
+            "title": "Bash 4.3.39"
+        }, 
+        {
+            "location": "/build_install_iso/01_host_system_requirements/#binutils-2251", 
+            "text": "", 
+            "title": "Binutils 2.25.1"
+        }, 
+        {
+            "location": "/build_install_iso/01_host_system_requirements/#bison-304", 
+            "text": "Bison: (/usr/bin/yacc should be a link to bison or small script that executes bison)", 
+            "title": "Bison 3.0.4"
+        }, 
+        {
+            "location": "/build_install_iso/01_host_system_requirements/#bzip2-106", 
+            "text": "", 
+            "title": "Bzip2 1.0.6"
+        }, 
+        {
+            "location": "/build_install_iso/01_host_system_requirements/#coreutils-824", 
+            "text": "", 
+            "title": "Coreutils 8.24"
+        }, 
+        {
+            "location": "/build_install_iso/01_host_system_requirements/#diffutils-33", 
+            "text": "", 
+            "title": "Diffutils 3.3"
+        }, 
+        {
+            "location": "/build_install_iso/01_host_system_requirements/#findutils-442", 
+            "text": "", 
+            "title": "Findutils 4.4.2"
+        }, 
+        {
+            "location": "/build_install_iso/01_host_system_requirements/#gawk-413", 
+            "text": "Gawk: (/usr/bin/awk should be a link to gawk)", 
+            "title": "Gawk 4.1.3"
+        }, 
+        {
+            "location": "/build_install_iso/01_host_system_requirements/#gcc-including-the-c-compiler-530", 
+            "text": "", 
+            "title": "GCC (including the C++ compiler) 5.3.0"
+        }, 
+        {
+            "location": "/build_install_iso/01_host_system_requirements/#c-530", 
+            "text": "Note  It is important to checking for some library consistency:\nSee  Related Helper Scripts .", 
+            "title": "C++ 5.3.0"
+        }, 
+        {
+            "location": "/build_install_iso/01_host_system_requirements/#glibc-222", 
+            "text": "", 
+            "title": "Glibc 2.22"
+        }, 
+        {
+            "location": "/build_install_iso/01_host_system_requirements/#grep-223", 
+            "text": "", 
+            "title": "Grep 2.23"
+        }, 
+        {
+            "location": "/build_install_iso/01_host_system_requirements/#gzip-16", 
+            "text": "", 
+            "title": "Gzip 1.6"
+        }, 
+        {
+            "location": "/build_install_iso/01_host_system_requirements/#linux-kernel-31827", 
+            "text": "Note  Absolute minimum required kernel version is: 2.6.32  The reason for the minimum kernel version requirement is\nthat we specify that version when building glibc at the recommendation of the developers.\nIt is also required by udev.", 
+            "title": "Linux Kernel 3.18.27"
+        }, 
+        {
+            "location": "/build_install_iso/01_host_system_requirements/#m4-1417", 
+            "text": "", 
+            "title": "M4 1.4.17"
+        }, 
+        {
+            "location": "/build_install_iso/01_host_system_requirements/#make-41", 
+            "text": "", 
+            "title": "Make 4.1"
+        }, 
+        {
+            "location": "/build_install_iso/01_host_system_requirements/#patch-275", 
+            "text": "", 
+            "title": "Patch 2.7.5"
+        }, 
+        {
+            "location": "/build_install_iso/01_host_system_requirements/#perl-5221", 
+            "text": "", 
+            "title": "Perl 5.22.1"
+        }, 
+        {
+            "location": "/build_install_iso/01_host_system_requirements/#sed-422", 
+            "text": "", 
+            "title": "Sed 4.2.2"
+        }, 
+        {
+            "location": "/build_install_iso/01_host_system_requirements/#tar-128", 
+            "text": "", 
+            "title": "Tar 1.28"
+        }, 
+        {
+            "location": "/build_install_iso/01_host_system_requirements/#texinfo-60", 
+            "text": "", 
+            "title": "Texinfo 6.0"
+        }, 
+        {
+            "location": "/build_install_iso/01_host_system_requirements/#xz-522", 
+            "text": "", 
+            "title": "Xz 5.2.2"
+        }, 
+        {
+            "location": "/build_install_iso/01_host_system_requirements/#git-271", 
+            "text": "", 
+            "title": "Git 2.7.1"
+        }, 
+        {
+            "location": "/build_install_iso/01_host_system_requirements/#wget-1171", 
+            "text": "", 
+            "title": "Wget 1.17.1"
+        }, 
+        {
+            "location": "/build_install_iso/02_general_preparation/", 
+            "text": "General Preparation\n\uf0c1\n\n\nClean any previous setup (user, group, directories etc..) and create the target directory.\n\n\n\n\n\n\n\nNote\n\n\nYou can execute these steps manually or run automated scripts AFTER reading them:\n\nLink To Automated Scripts\n\n\n\n\nClean Previous Setup\n\uf0c1\n\n\nTo compile \neverything from scratch\n it is best to remove any \nuser\n, \ngroup\n and \ndirectories\n created by a previous\nrun.\n\n\n\n\nHint\n\n\nIf you have downloaded  \nsources\n from a previous build you may want to move them.\n\n\n\n\nRemoving User 'lfs' And Home-Directory\n\uf0c1\n\n\nuserdel --force --remove lfs\n\n\n\n\nOptions:\n\n\n\n\n-f, --force\n: force removal of files, even if not owned by user\n\n\n-r, --remove\n: remove home directory and mail spool\n\n\n\n\nRemoving The Group 'lfs'\n\uf0c1\n\n\nNormally, by removing the user, the group is removed as well. If not sure run the following command.\n\n\ngroupdel lfs\n\n\n\n\nRemoving Any Existing 'lfs' Target Directory\n\uf0c1\n\n\nrm -rf /mnt/lfs\n\n\n\n\nRemoving Any Existing Related 'lfs' Links\n\uf0c1\n\n\n\n\nWarning\n\n\nRemoving host links/directories: Are you sure you want that.\n\n\n\n\nrm -rf /tools\nrm -rf /sources\n\n\n\n\nInstallation Target\n\uf0c1\n\n\nThis guide uses a target directory to build the new P-Linux ISO.\n\n\nCreating A New Target Directory\n\uf0c1\n\n\nmkdir /mnt/lfs\n\n\n\n\nAutomated Scripts\n\uf0c1\n\n\nIf you did not manually execute these steps, you can run the automated scripts:\n\n\n02_general_preparation.sh\n\uf0c1\n\n\nSee also \nHelper Scripts", 
+            "title": "General Preparation"
+        }, 
+        {
+            "location": "/build_install_iso/02_general_preparation/#general-preparation", 
+            "text": "Clean any previous setup (user, group, directories etc..) and create the target directory.    Note  You can execute these steps manually or run automated scripts AFTER reading them: Link To Automated Scripts", 
+            "title": "General Preparation"
+        }, 
+        {
+            "location": "/build_install_iso/02_general_preparation/#clean-previous-setup", 
+            "text": "To compile  everything from scratch  it is best to remove any  user ,  group  and  directories  created by a previous\nrun.   Hint  If you have downloaded   sources  from a previous build you may want to move them.", 
+            "title": "Clean Previous Setup"
+        }, 
+        {
+            "location": "/build_install_iso/02_general_preparation/#removing-user-lfs-and-home-directory", 
+            "text": "userdel --force --remove lfs  Options:   -f, --force : force removal of files, even if not owned by user  -r, --remove : remove home directory and mail spool", 
+            "title": "Removing User 'lfs' And Home-Directory"
+        }, 
+        {
+            "location": "/build_install_iso/02_general_preparation/#removing-the-group-lfs", 
+            "text": "Normally, by removing the user, the group is removed as well. If not sure run the following command.  groupdel lfs", 
+            "title": "Removing The Group 'lfs'"
+        }, 
+        {
+            "location": "/build_install_iso/02_general_preparation/#removing-any-existing-lfs-target-directory", 
+            "text": "rm -rf /mnt/lfs", 
+            "title": "Removing Any Existing 'lfs' Target Directory"
+        }, 
+        {
+            "location": "/build_install_iso/02_general_preparation/#removing-any-existing-related-lfs-links", 
+            "text": "Warning  Removing host links/directories: Are you sure you want that.   rm -rf /tools\nrm -rf /sources", 
+            "title": "Removing Any Existing Related 'lfs' Links"
+        }, 
+        {
+            "location": "/build_install_iso/02_general_preparation/#installation-target", 
+            "text": "This guide uses a target directory to build the new P-Linux ISO.", 
+            "title": "Installation Target"
+        }, 
+        {
+            "location": "/build_install_iso/02_general_preparation/#creating-a-new-target-directory", 
+            "text": "mkdir /mnt/lfs", 
+            "title": "Creating A New Target Directory"
+        }, 
+        {
+            "location": "/build_install_iso/02_general_preparation/#automated-scripts", 
+            "text": "If you did not manually execute these steps, you can run the automated scripts:", 
+            "title": "Automated Scripts"
+        }, 
+        {
+            "location": "/build_install_iso/02_general_preparation/#02_general_preparationsh", 
+            "text": "See also  Helper Scripts", 
+            "title": "02_general_preparation.sh"
+        }, 
+        {
+            "location": "/about/readme/", 
+            "text": "P-Linux-Core\n\uf0c1\n\n\nScripts, programs, documentation for compiling, installing and using a P-Linux system.\n\n\n\n\n\nWeb Presence\n\uf0c1\n\n\n\n\nP-Linux-Core \nweb site - documentation\n\n\nP-Linux-Core \ngithub repository", 
+            "title": "Readme"
+        }, 
+        {
+            "location": "/about/readme/#p-linux-core", 
+            "text": "Scripts, programs, documentation for compiling, installing and using a P-Linux system.", 
+            "title": "P-Linux-Core"
+        }, 
+        {
+            "location": "/about/readme/#web-presence", 
+            "text": "P-Linux-Core  web site - documentation  P-Linux-Core  github repository", 
+            "title": "Web Presence"
+        }, 
+        {
+            "location": "/about/license/", 
+            "text": "Copyrights \n Licenses\n\uf0c1\n\n\n\n\nP-Linux-Core Package License (GPL2/later)\n\uf0c1\n\n\nThe \nP-Linux-Core package\n is licensed under the GNU GENERAL PUBLIC LICENSE (Version 2):\n\n\n\n\nCopyright (c) 2016, \npeter1000\n \nhttps://github.com/peter1000\n.\n\n\nThis program is free software; you can redistribute it and/or modify it under the terms of the\nGNU General Public License as published by the Free Software Foundation; either version 2 of the License,\nor (at your option) any later version.\n\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even\nthe implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n\nSee the GNU General Public License for more details.\n\n\nYou should have received a copy of the GNU General Public License along with this program; if not, write\nto the Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.\n\n\nRead the complete license below.\n\n\n\n\nLicenses for incorporated software \n data\n\uf0c1\n\n\nThe \nP-Linux-Core package\n includes code \n data derived from the following projects, which have their own licenses:\n\n\n\n\n\n\nLinux From Scratch book (LFS)\n: Copyright \u00a9 1999-2016 Gerard Beekmans\n\n\nLFS Licenses\n\n\nThis book is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 2.0 License.\nComputer instructions may be extracted from the book under the MIT License.\n\n\n\n\n\n\nMany thanks to the authors and contributors of those wonderful projects.\n\n\nAcknowledgment\n\uf0c1\n\n\nThe \nP-Linux-Logo\n \nPenguin face\n is based on \nLinux 2.0 Penguins\n by Larry Ewing \n and The GIMP.\n\n\nPermission to use and/or modify this image is granted provided you acknowledge\nme lewing@isc.tamu.edu and The GIMP if someone asks.\n\n\n\n\nMany thanks.\n\n\n\n\nCOMPLETE LICENSE\n\uf0c1\n\n\n            GNU GENERAL PUBLIC LICENSE\n               Version 2, June 1991\n\n Copyright (C) 1989, 1991 Free Software Foundation, Inc.\n        59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.\n\n Everyone is permitted to copy and distribute verbatim copies\n of this license document, but changing it is not allowed.\n\n                Preamble\n\n  The licenses for most software are designed to take away your\nfreedom to share and change it.  By contrast, the GNU General Public\nLicense is intended to guarantee your freedom to share and change free\nsoftware--to make sure the software is free for all its users.  This\nGeneral Public License applies to most of the Free Software\nFoundation's software and to any other program whose authors commit to\nusing it.  (Some other Free Software Foundation software is covered by\nthe GNU Library General Public License instead.)  You can apply it to\nyour programs, too.\n\n  When we speak of free software, we are referring to freedom, not\nprice.  Our General Public Licenses are designed to make sure that you\nhave the freedom to distribute copies of free software (and charge for\nthis service if you wish), that you receive source code or can get it\nif you want it, that you can change the software or use pieces of it\nin new free programs; and that you know you can do these things.\n\n  To protect your rights, we need to make restrictions that forbid\nanyone to deny you these rights or to ask you to surrender the rights.\nThese restrictions translate to certain responsibilities for you if you\ndistribute copies of the software, or if you modify it.\n\n  For example, if you distribute copies of such a program, whether\ngratis or for a fee, you must give the recipients all the rights that\nyou have.  You must make sure that they, too, receive or can get the\nsource code.  And you must show them these terms so they know their\nrights.\n\n  We protect your rights with two steps: (1) copyright the software, and\n(2) offer you this license which gives you legal permission to copy,\ndistribute and/or modify the software.\n\n  Also, for each author's protection and ours, we want to make certain\nthat everyone understands that there is no warranty for this free\nsoftware.  If the software is modified by someone else and passed on, we\nwant its recipients to know that what they have is not the original, so\nthat any problems introduced by others will not reflect on the original\nauthors' reputations.\n\n  Finally, any free program is threatened constantly by software\npatents.  We wish to avoid the danger that redistributors of a free\nprogram will individually obtain patent licenses, in effect making the\nprogram proprietary.  To prevent this, we have made it clear that any\npatent must be licensed for everyone's free use or not licensed at all.\n\n  The precise terms and conditions for copying, distribution and\nmodification follow.\n\f\n            GNU GENERAL PUBLIC LICENSE\n   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION\n\n  0. This License applies to any program or other work which contains\na notice placed by the copyright holder saying it may be distributed\nunder the terms of this General Public License.  The \nProgram\n, below,\nrefers to any such program or work, and a \nwork based on the Program\n\nmeans either the Program or any derivative work under copyright law:\nthat is to say, a work containing the Program or a portion of it,\neither verbatim or with modifications and/or translated into another\nlanguage.  (Hereinafter, translation is included without limitation in\nthe term \nmodification\n.)  Each licensee is addressed as \nyou\n.\n\nActivities other than copying, distribution and modification are not\ncovered by this License; they are outside its scope.  The act of\nrunning the Program is not restricted, and the output from the Program\nis covered only if its contents constitute a work based on the\nProgram (independent of having been made by running the Program).\nWhether that is true depends on what the Program does.\n\n  1. You may copy and distribute verbatim copies of the Program's\nsource code as you receive it, in any medium, provided that you\nconspicuously and appropriately publish on each copy an appropriate\ncopyright notice and disclaimer of warranty; keep intact all the\nnotices that refer to this License and to the absence of any warranty;\nand give any other recipients of the Program a copy of this License\nalong with the Program.\n\nYou may charge a fee for the physical act of transferring a copy, and\nyou may at your option offer warranty protection in exchange for a fee.\n\n  2. You may modify your copy or copies of the Program or any portion\nof it, thus forming a work based on the Program, and copy and\ndistribute such modifications or work under the terms of Section 1\nabove, provided that you also meet all of these conditions:\n\n    a) You must cause the modified files to carry prominent notices\n    stating that you changed the files and the date of any change.\n\n    b) You must cause any work that you distribute or publish, that in\n    whole or in part contains or is derived from the Program or any\n    part thereof, to be licensed as a whole at no charge to all third\n    parties under the terms of this License.\n\n    c) If the modified program normally reads commands interactively\n    when run, you must cause it, when started running for such\n    interactive use in the most ordinary way, to print or display an\n    announcement including an appropriate copyright notice and a\n    notice that there is no warranty (or else, saying that you provide\n    a warranty) and that users may redistribute the program under\n    these conditions, and telling the user how to view a copy of this\n    License.  (Exception: if the Program itself is interactive but\n    does not normally print such an announcement, your work based on\n    the Program is not required to print an announcement.)\n\f\nThese requirements apply to the modified work as a whole.  If\nidentifiable sections of that work are not derived from the Program,\nand can be reasonably considered independent and separate works in\nthemselves, then this License, and its terms, do not apply to those\nsections when you distribute them as separate works.  But when you\ndistribute the same sections as part of a whole which is a work based\non the Program, the distribution of the whole must be on the terms of\nthis License, whose permissions for other licensees extend to the\nentire whole, and thus to each and every part regardless of who wrote it.\n\nThus, it is not the intent of this section to claim rights or contest\nyour rights to work written entirely by you; rather, the intent is to\nexercise the right to control the distribution of derivative or\ncollective works based on the Program.\n\nIn addition, mere aggregation of another work not based on the Program\nwith the Program (or with a work based on the Program) on a volume of\na storage or distribution medium does not bring the other work under\nthe scope of this License.\n\n  3. You may copy and distribute the Program (or a work based on it,\nunder Section 2) in object code or executable form under the terms of\nSections 1 and 2 above provided that you also do one of the following:\n\n    a) Accompany it with the complete corresponding machine-readable\n    source code, which must be distributed under the terms of Sections\n    1 and 2 above on a medium customarily used for software interchange; or,\n\n    b) Accompany it with a written offer, valid for at least three\n    years, to give any third party, for a charge no more than your\n    cost of physically performing source distribution, a complete\n    machine-readable copy of the corresponding source code, to be\n    distributed under the terms of Sections 1 and 2 above on a medium\n    customarily used for software interchange; or,\n\n    c) Accompany it with the information you received as to the offer\n    to distribute corresponding source code.  (This alternative is\n    allowed only for noncommercial distribution and only if you\n    received the program in object code or executable form with such\n    an offer, in accord with Subsection b above.)\n\nThe source code for a work means the preferred form of the work for\nmaking modifications to it.  For an executable work, complete source\ncode means all the source code for all modules it contains, plus any\nassociated interface definition files, plus the scripts used to\ncontrol compilation and installation of the executable.  However, as a\nspecial exception, the source code distributed need not include\nanything that is normally distributed (in either source or binary\nform) with the major components (compiler, kernel, and so on) of the\noperating system on which the executable runs, unless that component\nitself accompanies the executable.\n\nIf distribution of executable or object code is made by offering\naccess to copy from a designated place, then offering equivalent\naccess to copy the source code from the same place counts as\ndistribution of the source code, even though third parties are not\ncompelled to copy the source along with the object code.\n\f\n  4. You may not copy, modify, sublicense, or distribute the Program\nexcept as expressly provided under this License.  Any attempt\notherwise to copy, modify, sublicense or distribute the Program is\nvoid, and will automatically terminate your rights under this License.\nHowever, parties who have received copies, or rights, from you under\nthis License will not have their licenses terminated so long as such\nparties remain in full compliance.\n\n  5. You are not required to accept this License, since you have not\nsigned it.  However, nothing else grants you permission to modify or\ndistribute the Program or its derivative works.  These actions are\nprohibited by law if you do not accept this License.  Therefore, by\nmodifying or distributing the Program (or any work based on the\nProgram), you indicate your acceptance of this License to do so, and\nall its terms and conditions for copying, distributing or modifying\nthe Program or works based on it.\n\n  6. Each time you redistribute the Program (or any work based on the\nProgram), the recipient automatically receives a license from the\noriginal licensor to copy, distribute or modify the Program subject to\nthese terms and conditions.  You may not impose any further\nrestrictions on the recipients' exercise of the rights granted herein.\nYou are not responsible for enforcing compliance by third parties to\nthis License.\n\n  7. If, as a consequence of a court judgment or allegation of patent\ninfringement or for any other reason (not limited to patent issues),\nconditions are imposed on you (whether by court order, agreement or\notherwise) that contradict the conditions of this License, they do not\nexcuse you from the conditions of this License.  If you cannot\ndistribute so as to satisfy simultaneously your obligations under this\nLicense and any other pertinent obligations, then as a consequence you\nmay not distribute the Program at all.  For example, if a patent\nlicense would not permit royalty-free redistribution of the Program by\nall those who receive copies directly or indirectly through you, then\nthe only way you could satisfy both it and this License would be to\nrefrain entirely from distribution of the Program.\n\nIf any portion of this section is held invalid or unenforceable under\nany particular circumstance, the balance of the section is intended to\napply and the section as a whole is intended to apply in other\ncircumstances.\n\nIt is not the purpose of this section to induce you to infringe any\npatents or other property right claims or to contest validity of any\nsuch claims; this section has the sole purpose of protecting the\nintegrity of the free software distribution system, which is\nimplemented by public license practices.  Many people have made\ngenerous contributions to the wide range of software distributed\nthrough that system in reliance on consistent application of that\nsystem; it is up to the author/donor to decide if he or she is willing\nto distribute software through any other system and a licensee cannot\nimpose that choice.\n\nThis section is intended to make thoroughly clear what is believed to\nbe a consequence of the rest of this License.\n\f\n  8. If the distribution and/or use of the Program is restricted in\ncertain countries either by patents or by copyrighted interfaces, the\noriginal copyright holder who places the Program under this License\nmay add an explicit geographical distribution limitation excluding\nthose countries, so that distribution is permitted only in or among\ncountries not thus excluded.  In such case, this License incorporates\nthe limitation as if written in the body of this License.\n\n  9. The Free Software Foundation may publish revised and/or new versions\nof the General Public License from time to time.  Such new versions will\nbe similar in spirit to the present version, but may differ in detail to\naddress new problems or concerns.\n\nEach version is given a distinguishing version number.  If the Program\nspecifies a version number of this License which applies to it and \nany\nlater version\n, you have the option of following the terms and conditions\neither of that version or of any later version published by the Free\nSoftware Foundation.  If the Program does not specify a version number of\nthis License, you may choose any version ever published by the Free Software\nFoundation.\n\n  10. If you wish to incorporate parts of the Program into other free\nprograms whose distribution conditions are different, write to the author\nto ask for permission.  For software which is copyrighted by the Free\nSoftware Foundation, write to the Free Software Foundation; we sometimes\nmake exceptions for this.  Our decision will be guided by the two goals\nof preserving the free status of all derivatives of our free software and\nof promoting the sharing and reuse of software generally.\n\n                NO WARRANTY\n\n  11. BECAUSE THE PROGRAM IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY\nFOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW.  EXCEPT WHEN\nOTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES\nPROVIDE THE PROGRAM \nAS IS\n WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED\nOR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF\nMERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  THE ENTIRE RISK AS\nTO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU.  SHOULD THE\nPROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING,\nREPAIR OR CORRECTION.\n\n  12. IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING\nWILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR\nREDISTRIBUTE THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES,\nINCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING\nOUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED\nTO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY\nYOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER\nPROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE\nPOSSIBILITY OF SUCH DAMAGES.\n\n             END OF TERMS AND CONDITIONS\n\f\n    Appendix: How to Apply These Terms to Your New Programs\n\n  If you develop a new program, and you want it to be of the greatest\npossible use to the public, the best way to achieve this is to make it\nfree software which everyone can redistribute and change under these terms.\n\n  To do so, attach the following notices to the program.  It is safest\nto attach them to the start of each source file to most effectively\nconvey the exclusion of warranty; and each file should have at least\nthe \ncopyright\n line and a pointer to where the full notice is found.\n\n    \none line to give the program's name and a brief idea of what it does.\n\n    Copyright (C) 19yy  \nname of author\n\n\n    This program is free software; you can redistribute it and/or modify\n    it under the terms of the GNU General Public License as published by\n    the Free Software Foundation; either version 2 of the License, or\n    (at your option) any later version.\n\n    This program is distributed in the hope that it will be useful,\n    but WITHOUT ANY WARRANTY; without even the implied warranty of\n    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n    GNU General Public License for more details.\n\n    You should have received a copy of the GNU General Public License\n    along with this program; if not, write to the Free Software\n    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.\n\nAlso add information on how to contact you by electronic and paper mail.\n\nIf the program is interactive, make it output a short notice like this\nwhen it starts in an interactive mode:\n\n    Gnomovision version 69, Copyright (C) 19yy name of author\n    Gnomovision comes with ABSOLUTELY NO WARRANTY; for details type `show w'.\n    This is free software, and you are welcome to redistribute it\n    under certain conditions; type `show c' for details.\n\nThe hypothetical commands `show w' and `show c' should show the appropriate\nparts of the General Public License.  Of course, the commands you use may\nbe called something other than `show w' and `show c'; they could even be\nmouse-clicks or menu items--whatever suits your program.\n\nYou should also get your employer (if you work as a programmer) or your\nschool, if any, to sign a \ncopyright disclaimer\n for the program, if\nnecessary.  Here is a sample; alter the names:\n\n  Yoyodyne, Inc., hereby disclaims all copyright interest in the program\n  `Gnomovision' (which makes passes at compilers) written by James Hacker.\n\n  \nsignature of Ty Coon\n, 1 April 1989\n  Ty Coon, President of Vice\n\nThis General Public License does not permit incorporating your program into\nproprietary programs.  If your program is a subroutine library, you may\nconsider it more useful to permit linking proprietary applications with the\nlibrary.  If this is what you want to do, use the GNU Library General\nPublic License instead of this License.", 
+            "title": "License"
+        }, 
+        {
+            "location": "/about/license/#copyrights-licenses", 
+            "text": "", 
+            "title": "Copyrights &amp; Licenses"
+        }, 
+        {
+            "location": "/about/license/#p-linux-core-package-license-gpl2later", 
+            "text": "The  P-Linux-Core package  is licensed under the GNU GENERAL PUBLIC LICENSE (Version 2):   Copyright (c) 2016,  peter1000   https://github.com/peter1000 .  This program is free software; you can redistribute it and/or modify it under the terms of the\nGNU General Public License as published by the Free Software Foundation; either version 2 of the License,\nor (at your option) any later version.  This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even\nthe implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.  You should have received a copy of the GNU General Public License along with this program; if not, write\nto the Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  Read the complete license below.", 
+            "title": "P-Linux-Core Package License (GPL2/later)"
+        }, 
+        {
+            "location": "/about/license/#licenses-for-incorporated-software-data", 
+            "text": "The  P-Linux-Core package  includes code   data derived from the following projects, which have their own licenses:    Linux From Scratch book (LFS) : Copyright \u00a9 1999-2016 Gerard Beekmans  LFS Licenses  This book is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 2.0 License.\nComputer instructions may be extracted from the book under the MIT License.    Many thanks to the authors and contributors of those wonderful projects.", 
+            "title": "Licenses for incorporated software &amp; data"
+        }, 
+        {
+            "location": "/about/license/#acknowledgment", 
+            "text": "The  P-Linux-Logo   Penguin face  is based on  Linux 2.0 Penguins  by Larry Ewing   and The GIMP.  Permission to use and/or modify this image is granted provided you acknowledge\nme lewing@isc.tamu.edu and The GIMP if someone asks.  Many thanks.", 
+            "title": "Acknowledgment"
+        }, 
+        {
+            "location": "/about/license/#complete-license", 
+            "text": "GNU GENERAL PUBLIC LICENSE\n               Version 2, June 1991\n\n Copyright (C) 1989, 1991 Free Software Foundation, Inc.\n        59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.\n\n Everyone is permitted to copy and distribute verbatim copies\n of this license document, but changing it is not allowed.\n\n                Preamble\n\n  The licenses for most software are designed to take away your\nfreedom to share and change it.  By contrast, the GNU General Public\nLicense is intended to guarantee your freedom to share and change free\nsoftware--to make sure the software is free for all its users.  This\nGeneral Public License applies to most of the Free Software\nFoundation's software and to any other program whose authors commit to\nusing it.  (Some other Free Software Foundation software is covered by\nthe GNU Library General Public License instead.)  You can apply it to\nyour programs, too.\n\n  When we speak of free software, we are referring to freedom, not\nprice.  Our General Public Licenses are designed to make sure that you\nhave the freedom to distribute copies of free software (and charge for\nthis service if you wish), that you receive source code or can get it\nif you want it, that you can change the software or use pieces of it\nin new free programs; and that you know you can do these things.\n\n  To protect your rights, we need to make restrictions that forbid\nanyone to deny you these rights or to ask you to surrender the rights.\nThese restrictions translate to certain responsibilities for you if you\ndistribute copies of the software, or if you modify it.\n\n  For example, if you distribute copies of such a program, whether\ngratis or for a fee, you must give the recipients all the rights that\nyou have.  You must make sure that they, too, receive or can get the\nsource code.  And you must show them these terms so they know their\nrights.\n\n  We protect your rights with two steps: (1) copyright the software, and\n(2) offer you this license which gives you legal permission to copy,\ndistribute and/or modify the software.\n\n  Also, for each author's protection and ours, we want to make certain\nthat everyone understands that there is no warranty for this free\nsoftware.  If the software is modified by someone else and passed on, we\nwant its recipients to know that what they have is not the original, so\nthat any problems introduced by others will not reflect on the original\nauthors' reputations.\n\n  Finally, any free program is threatened constantly by software\npatents.  We wish to avoid the danger that redistributors of a free\nprogram will individually obtain patent licenses, in effect making the\nprogram proprietary.  To prevent this, we have made it clear that any\npatent must be licensed for everyone's free use or not licensed at all.\n\n  The precise terms and conditions for copying, distribution and\nmodification follow.\n\f\n            GNU GENERAL PUBLIC LICENSE\n   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION\n\n  0. This License applies to any program or other work which contains\na notice placed by the copyright holder saying it may be distributed\nunder the terms of this General Public License.  The  Program , below,\nrefers to any such program or work, and a  work based on the Program \nmeans either the Program or any derivative work under copyright law:\nthat is to say, a work containing the Program or a portion of it,\neither verbatim or with modifications and/or translated into another\nlanguage.  (Hereinafter, translation is included without limitation in\nthe term  modification .)  Each licensee is addressed as  you .\n\nActivities other than copying, distribution and modification are not\ncovered by this License; they are outside its scope.  The act of\nrunning the Program is not restricted, and the output from the Program\nis covered only if its contents constitute a work based on the\nProgram (independent of having been made by running the Program).\nWhether that is true depends on what the Program does.\n\n  1. You may copy and distribute verbatim copies of the Program's\nsource code as you receive it, in any medium, provided that you\nconspicuously and appropriately publish on each copy an appropriate\ncopyright notice and disclaimer of warranty; keep intact all the\nnotices that refer to this License and to the absence of any warranty;\nand give any other recipients of the Program a copy of this License\nalong with the Program.\n\nYou may charge a fee for the physical act of transferring a copy, and\nyou may at your option offer warranty protection in exchange for a fee.\n\n  2. You may modify your copy or copies of the Program or any portion\nof it, thus forming a work based on the Program, and copy and\ndistribute such modifications or work under the terms of Section 1\nabove, provided that you also meet all of these conditions:\n\n    a) You must cause the modified files to carry prominent notices\n    stating that you changed the files and the date of any change.\n\n    b) You must cause any work that you distribute or publish, that in\n    whole or in part contains or is derived from the Program or any\n    part thereof, to be licensed as a whole at no charge to all third\n    parties under the terms of this License.\n\n    c) If the modified program normally reads commands interactively\n    when run, you must cause it, when started running for such\n    interactive use in the most ordinary way, to print or display an\n    announcement including an appropriate copyright notice and a\n    notice that there is no warranty (or else, saying that you provide\n    a warranty) and that users may redistribute the program under\n    these conditions, and telling the user how to view a copy of this\n    License.  (Exception: if the Program itself is interactive but\n    does not normally print such an announcement, your work based on\n    the Program is not required to print an announcement.)\n\f\nThese requirements apply to the modified work as a whole.  If\nidentifiable sections of that work are not derived from the Program,\nand can be reasonably considered independent and separate works in\nthemselves, then this License, and its terms, do not apply to those\nsections when you distribute them as separate works.  But when you\ndistribute the same sections as part of a whole which is a work based\non the Program, the distribution of the whole must be on the terms of\nthis License, whose permissions for other licensees extend to the\nentire whole, and thus to each and every part regardless of who wrote it.\n\nThus, it is not the intent of this section to claim rights or contest\nyour rights to work written entirely by you; rather, the intent is to\nexercise the right to control the distribution of derivative or\ncollective works based on the Program.\n\nIn addition, mere aggregation of another work not based on the Program\nwith the Program (or with a work based on the Program) on a volume of\na storage or distribution medium does not bring the other work under\nthe scope of this License.\n\n  3. You may copy and distribute the Program (or a work based on it,\nunder Section 2) in object code or executable form under the terms of\nSections 1 and 2 above provided that you also do one of the following:\n\n    a) Accompany it with the complete corresponding machine-readable\n    source code, which must be distributed under the terms of Sections\n    1 and 2 above on a medium customarily used for software interchange; or,\n\n    b) Accompany it with a written offer, valid for at least three\n    years, to give any third party, for a charge no more than your\n    cost of physically performing source distribution, a complete\n    machine-readable copy of the corresponding source code, to be\n    distributed under the terms of Sections 1 and 2 above on a medium\n    customarily used for software interchange; or,\n\n    c) Accompany it with the information you received as to the offer\n    to distribute corresponding source code.  (This alternative is\n    allowed only for noncommercial distribution and only if you\n    received the program in object code or executable form with such\n    an offer, in accord with Subsection b above.)\n\nThe source code for a work means the preferred form of the work for\nmaking modifications to it.  For an executable work, complete source\ncode means all the source code for all modules it contains, plus any\nassociated interface definition files, plus the scripts used to\ncontrol compilation and installation of the executable.  However, as a\nspecial exception, the source code distributed need not include\nanything that is normally distributed (in either source or binary\nform) with the major components (compiler, kernel, and so on) of the\noperating system on which the executable runs, unless that component\nitself accompanies the executable.\n\nIf distribution of executable or object code is made by offering\naccess to copy from a designated place, then offering equivalent\naccess to copy the source code from the same place counts as\ndistribution of the source code, even though third parties are not\ncompelled to copy the source along with the object code.\n\f\n  4. You may not copy, modify, sublicense, or distribute the Program\nexcept as expressly provided under this License.  Any attempt\notherwise to copy, modify, sublicense or distribute the Program is\nvoid, and will automatically terminate your rights under this License.\nHowever, parties who have received copies, or rights, from you under\nthis License will not have their licenses terminated so long as such\nparties remain in full compliance.\n\n  5. You are not required to accept this License, since you have not\nsigned it.  However, nothing else grants you permission to modify or\ndistribute the Program or its derivative works.  These actions are\nprohibited by law if you do not accept this License.  Therefore, by\nmodifying or distributing the Program (or any work based on the\nProgram), you indicate your acceptance of this License to do so, and\nall its terms and conditions for copying, distributing or modifying\nthe Program or works based on it.\n\n  6. Each time you redistribute the Program (or any work based on the\nProgram), the recipient automatically receives a license from the\noriginal licensor to copy, distribute or modify the Program subject to\nthese terms and conditions.  You may not impose any further\nrestrictions on the recipients' exercise of the rights granted herein.\nYou are not responsible for enforcing compliance by third parties to\nthis License.\n\n  7. If, as a consequence of a court judgment or allegation of patent\ninfringement or for any other reason (not limited to patent issues),\nconditions are imposed on you (whether by court order, agreement or\notherwise) that contradict the conditions of this License, they do not\nexcuse you from the conditions of this License.  If you cannot\ndistribute so as to satisfy simultaneously your obligations under this\nLicense and any other pertinent obligations, then as a consequence you\nmay not distribute the Program at all.  For example, if a patent\nlicense would not permit royalty-free redistribution of the Program by\nall those who receive copies directly or indirectly through you, then\nthe only way you could satisfy both it and this License would be to\nrefrain entirely from distribution of the Program.\n\nIf any portion of this section is held invalid or unenforceable under\nany particular circumstance, the balance of the section is intended to\napply and the section as a whole is intended to apply in other\ncircumstances.\n\nIt is not the purpose of this section to induce you to infringe any\npatents or other property right claims or to contest validity of any\nsuch claims; this section has the sole purpose of protecting the\nintegrity of the free software distribution system, which is\nimplemented by public license practices.  Many people have made\ngenerous contributions to the wide range of software distributed\nthrough that system in reliance on consistent application of that\nsystem; it is up to the author/donor to decide if he or she is willing\nto distribute software through any other system and a licensee cannot\nimpose that choice.\n\nThis section is intended to make thoroughly clear what is believed to\nbe a consequence of the rest of this License.\n\f\n  8. If the distribution and/or use of the Program is restricted in\ncertain countries either by patents or by copyrighted interfaces, the\noriginal copyright holder who places the Program under this License\nmay add an explicit geographical distribution limitation excluding\nthose countries, so that distribution is permitted only in or among\ncountries not thus excluded.  In such case, this License incorporates\nthe limitation as if written in the body of this License.\n\n  9. The Free Software Foundation may publish revised and/or new versions\nof the General Public License from time to time.  Such new versions will\nbe similar in spirit to the present version, but may differ in detail to\naddress new problems or concerns.\n\nEach version is given a distinguishing version number.  If the Program\nspecifies a version number of this License which applies to it and  any\nlater version , you have the option of following the terms and conditions\neither of that version or of any later version published by the Free\nSoftware Foundation.  If the Program does not specify a version number of\nthis License, you may choose any version ever published by the Free Software\nFoundation.\n\n  10. If you wish to incorporate parts of the Program into other free\nprograms whose distribution conditions are different, write to the author\nto ask for permission.  For software which is copyrighted by the Free\nSoftware Foundation, write to the Free Software Foundation; we sometimes\nmake exceptions for this.  Our decision will be guided by the two goals\nof preserving the free status of all derivatives of our free software and\nof promoting the sharing and reuse of software generally.\n\n                NO WARRANTY\n\n  11. BECAUSE THE PROGRAM IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY\nFOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW.  EXCEPT WHEN\nOTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES\nPROVIDE THE PROGRAM  AS IS  WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED\nOR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF\nMERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  THE ENTIRE RISK AS\nTO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU.  SHOULD THE\nPROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING,\nREPAIR OR CORRECTION.\n\n  12. IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING\nWILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR\nREDISTRIBUTE THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES,\nINCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING\nOUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED\nTO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY\nYOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER\nPROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE\nPOSSIBILITY OF SUCH DAMAGES.\n\n             END OF TERMS AND CONDITIONS\n\f\n    Appendix: How to Apply These Terms to Your New Programs\n\n  If you develop a new program, and you want it to be of the greatest\npossible use to the public, the best way to achieve this is to make it\nfree software which everyone can redistribute and change under these terms.\n\n  To do so, attach the following notices to the program.  It is safest\nto attach them to the start of each source file to most effectively\nconvey the exclusion of warranty; and each file should have at least\nthe  copyright  line and a pointer to where the full notice is found.\n\n     one line to give the program's name and a brief idea of what it does. \n    Copyright (C) 19yy   name of author \n\n    This program is free software; you can redistribute it and/or modify\n    it under the terms of the GNU General Public License as published by\n    the Free Software Foundation; either version 2 of the License, or\n    (at your option) any later version.\n\n    This program is distributed in the hope that it will be useful,\n    but WITHOUT ANY WARRANTY; without even the implied warranty of\n    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n    GNU General Public License for more details.\n\n    You should have received a copy of the GNU General Public License\n    along with this program; if not, write to the Free Software\n    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.\n\nAlso add information on how to contact you by electronic and paper mail.\n\nIf the program is interactive, make it output a short notice like this\nwhen it starts in an interactive mode:\n\n    Gnomovision version 69, Copyright (C) 19yy name of author\n    Gnomovision comes with ABSOLUTELY NO WARRANTY; for details type `show w'.\n    This is free software, and you are welcome to redistribute it\n    under certain conditions; type `show c' for details.\n\nThe hypothetical commands `show w' and `show c' should show the appropriate\nparts of the General Public License.  Of course, the commands you use may\nbe called something other than `show w' and `show c'; they could even be\nmouse-clicks or menu items--whatever suits your program.\n\nYou should also get your employer (if you work as a programmer) or your\nschool, if any, to sign a  copyright disclaimer  for the program, if\nnecessary.  Here is a sample; alter the names:\n\n  Yoyodyne, Inc., hereby disclaims all copyright interest in the program\n  `Gnomovision' (which makes passes at compilers) written by James Hacker.\n\n   signature of Ty Coon , 1 April 1989\n  Ty Coon, President of Vice\n\nThis General Public License does not permit incorporating your program into\nproprietary programs.  If your program is a subroutine library, you may\nconsider it more useful to permit linking proprietary applications with the\nlibrary.  If this is what you want to do, use the GNU Library General\nPublic License instead of this License.", 
+            "title": "COMPLETE LICENSE"
+        }, 
+        {
+            "location": "/about/release-notes/", 
+            "text": "Release Notes\n\uf0c1\n\n\n\n\nv0.1.0 (xxxx-xx-xx)\n\uf0c1\n\n\n\n\nRenames: Implements: Build A P-Linux Install ISO\n\n\n\n\nHistory\n\uf0c1\n\n\nOn 09. March 2016 \npeter1000\n \nhttps://github.com/peter1000/\n created the new github repository\n\nP-Linux-Core\n with the plan to rewrite some of the functionalities of\n\nNuTyX 8.1-rc1 houaphan source code\n for \nP-Linux\n.", 
+            "title": "Release Notes"
+        }, 
+        {
+            "location": "/about/release-notes/#release-notes", 
+            "text": "", 
+            "title": "Release Notes"
+        }, 
+        {
+            "location": "/about/release-notes/#v010-xxxx-xx-xx", 
+            "text": "Renames: Implements: Build A P-Linux Install ISO", 
+            "title": "v0.1.0 (xxxx-xx-xx)"
+        }, 
+        {
+            "location": "/about/release-notes/#history", 
+            "text": "On 09. March 2016  peter1000   https://github.com/peter1000/  created the new github repository P-Linux-Core  with the plan to rewrite some of the functionalities of NuTyX 8.1-rc1 houaphan source code  for  P-Linux .", 
+            "title": "History"
+        }
+    ]
+}

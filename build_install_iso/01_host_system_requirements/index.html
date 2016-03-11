@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="peter1000">
+        <link rel="canonical" href="https://P-Linux.github.io/P-Linux-Core/build_install_iso/01_host_system_requirements/">
+        <link rel="shortcut icon" href="../../images/p_linux_favicon.ico">
+        
+
+	<title>Host System Requirements - P-Linux-Core</title>
+
+        <link href="../../css/bootstrap-3.0.3.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link href="../../css/extra.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../..">P-Linux-Core</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+            
+            
+                <li >
+                    <a href="../..">Home</a>
+                </li>
+            
+            
+            
+                <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Install-ISO <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../00_build_an_install_iso/">Build A P-Linux Install ISO</a>
+                        </li>
+                    
+                        <li class="active">
+                            <a href="./">Host System Requirements</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../02_general_preparation/">General Preparation</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../../about/readme/">Readme</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../about/license/">License</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../about/release-notes/">Release Notes</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            </ul>
+
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                <li >
+                    <a rel="next" href="../00_build_an_install_iso/">
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </li>
+                <li >
+                    <a rel="prev" href="../02_general_preparation/">
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="https://github.com/P-Linux/P-Linux-Core/">
+                        
+                            <i class="fa fa-github"></i>
+                        
+                        GitHub
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#host-system-requirements">Host System Requirements</a></li>
+        
+            <li><a href="#related-helper-scripts">Related Helper Scripts</a></li>
+        
+            <li><a href="#host-system">Host System</a></li>
+        
+            <li><a href="#host-required-software">Host Required Software</a></li>
+        
+    
+    </ul>
+</div></div>
+            <div class="col-md-9" role="main">
+
+<h1 id="host-system-requirements">Host System Requirements<a class="headerlink" href="#host-system-requirements" title="Permanent link"></a></h1>
+<p align="center">What must the current operating system support.</p>
+
+<hr />
+<p>This information is based on
+<a href="http://www.linuxfromscratch.org/lfs/view/development/prologue/hostreqs.html">Linux From Scratch (LFS) - Host Requirements</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There might be differences between OUR REQUIREMENTS and what LFS suggests.</p>
+</div>
+<h2 id="related-helper-scripts">Related Helper Scripts<a class="headerlink" href="#related-helper-scripts" title="Permanent link"></a></h2>
+<p>See also <a href="../00_build_an_install_iso/#helper-scripts">Helper Scripts</a></p>
+<h3 id="version-checksh">version-check.sh<a class="headerlink" href="#version-checksh" title="Permanent link"></a></h3>
+<p>Listing version numbers of critical development tools.</p>
+<h3 id="library-checksh">library-check.sh<a class="headerlink" href="#library-checksh" title="Permanent link"></a></h3>
+<p>Checking for some library consistency.</p>
+<p>EXAMPLE output:</p>
+<pre><code class="bash">root [ /P-Linux-Core/scripts/build_install_iso ]# bash library-check.sh
+
+====&gt; Checking for some library consistency...
+
+       libgmp.la: not found
+       libmpfr.la: not found
+       libmpc.la: not found
+
+====&gt; NOTE....
+    -&gt; The files identified by this script should be all present
+    -&gt;           or all absent, but not only one or two present.
+</code></pre>
+
+<h2 id="host-system">Host System<a class="headerlink" href="#host-system" title="Permanent link"></a></h2>
+<p><strong>OFFICIAL TESTED HOST SYSTEM</strong>: <a href="https://github.com/P-Linux">P-Linux</a></p>
+<p>Your host system MUST be a Linux system for 64-bit (x86_64) architecture. At the moment there are no plans to
+support any other architecture.</p>
+<p>The recommended host system in this order:</p>
+<ul>
+<li><a href="https://github.com/P-Linux">P-Linux</a></li>
+<li><a href="https://github.com/NuTyX">NuTyX-Linux</a></li>
+<li>but most modern 64-bit Linux distributions should be fine too.</li>
+</ul>
+<p><strong>Root privileges</strong> on the host system are required.</p>
+<h2 id="host-required-software">Host Required Software<a class="headerlink" href="#host-required-software" title="Permanent link"></a></h2>
+<p><strong>OFFICIAL TESTED HOST SOFTWARE</strong>: <a href="https://github.com/P-Linux">P-Linux</a> with the versions indicated.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Many distributions will place software headers into separate <code>developmet packages</code>, often called
+<strong>package-name-devel</strong> or <strong>package-name-dev</strong>. Be sure to install those if your distribution provides them.</p>
+</div>
+<p>Following software should be installed <strong>earlier or later versions</strong> of the listed software packages may work,
+but have not been tested.</p>
+<h3 id="bash-4339">Bash 4.3.39<a class="headerlink" href="#bash-4339" title="Permanent link"></a></h3>
+<p>Bash: (/bin/sh should be a symbolic or hard link to bash)</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Make sure you use only the <strong>BASH interpreter</strong> during this guide.</p>
+</div>
+<h3 id="binutils-2251">Binutils 2.25.1<a class="headerlink" href="#binutils-2251" title="Permanent link"></a></h3>
+<h3 id="bison-304">Bison 3.0.4<a class="headerlink" href="#bison-304" title="Permanent link"></a></h3>
+<p>Bison: (/usr/bin/yacc should be a link to bison or small script that executes bison)</p>
+<h3 id="bzip2-106">Bzip2 1.0.6<a class="headerlink" href="#bzip2-106" title="Permanent link"></a></h3>
+<h3 id="coreutils-824">Coreutils 8.24<a class="headerlink" href="#coreutils-824" title="Permanent link"></a></h3>
+<h3 id="diffutils-33">Diffutils 3.3<a class="headerlink" href="#diffutils-33" title="Permanent link"></a></h3>
+<h3 id="findutils-442">Findutils 4.4.2<a class="headerlink" href="#findutils-442" title="Permanent link"></a></h3>
+<h3 id="gawk-413">Gawk 4.1.3<a class="headerlink" href="#gawk-413" title="Permanent link"></a></h3>
+<p>Gawk: (/usr/bin/awk should be a link to gawk)</p>
+<h3 id="gcc-including-the-c-compiler-530">GCC (including the C++ compiler) 5.3.0<a class="headerlink" href="#gcc-including-the-c-compiler-530" title="Permanent link"></a></h3>
+<h4 id="c-530">C++ 5.3.0<a class="headerlink" href="#c-530" title="Permanent link"></a></h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is important to checking for some library consistency:
+See <a href="##related-helper-scripts">Related Helper Scripts</a>.</p>
+</div>
+<h3 id="glibc-222">Glibc 2.22<a class="headerlink" href="#glibc-222" title="Permanent link"></a></h3>
+<h3 id="grep-223">Grep 2.23<a class="headerlink" href="#grep-223" title="Permanent link"></a></h3>
+<h3 id="gzip-16">Gzip 1.6<a class="headerlink" href="#gzip-16" title="Permanent link"></a></h3>
+<h3 id="linux-kernel-31827">Linux Kernel 3.18.27<a class="headerlink" href="#linux-kernel-31827" title="Permanent link"></a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Absolute minimum required kernel version is: 2.6.32</p>
+<p>The reason for the minimum kernel version requirement is
+that we specify that version when building glibc at the recommendation of the developers.
+It is also required by udev.</p>
+</div>
+<h3 id="m4-1417">M4 1.4.17<a class="headerlink" href="#m4-1417" title="Permanent link"></a></h3>
+<h3 id="make-41">Make 4.1<a class="headerlink" href="#make-41" title="Permanent link"></a></h3>
+<h3 id="patch-275">Patch 2.7.5<a class="headerlink" href="#patch-275" title="Permanent link"></a></h3>
+<h3 id="perl-5221">Perl 5.22.1<a class="headerlink" href="#perl-5221" title="Permanent link"></a></h3>
+<h3 id="sed-422">Sed 4.2.2<a class="headerlink" href="#sed-422" title="Permanent link"></a></h3>
+<h3 id="tar-128">Tar 1.28<a class="headerlink" href="#tar-128" title="Permanent link"></a></h3>
+<h3 id="texinfo-60">Texinfo 6.0<a class="headerlink" href="#texinfo-60" title="Permanent link"></a></h3>
+<h3 id="xz-522">Xz 5.2.2<a class="headerlink" href="#xz-522" title="Permanent link"></a></h3>
+<h3 id="git-271">Git 2.7.1<a class="headerlink" href="#git-271" title="Permanent link"></a></h3>
+<h3 id="wget-1171">Wget 1.17.1<a class="headerlink" href="#wget-1171" title="Permanent link"></a></h3></div>
+        </div>
+
+	<footer class="col-md-12">
+		<hr>
+		
+		<p>Copyright (c) 2016, <strong>peter1000</strong> <a href="https://github.com/peter1000">https://github.com/peter1000</a> and contributors.</p>
+		
+		<p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+	</footer>
+
+
+        <script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script>
+        <script src="../../js/base.js"></script>
+    </body>
+</html>
