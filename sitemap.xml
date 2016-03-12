@@ -29,6 +29,24 @@
      <changefreq>daily</changefreq>
     </url>
         
+    <url>
+     <loc>https://P-Linux.github.io/P-Linux-Core//build_install_iso/03_optional_preparation/</loc>
+     <lastmod>2016-03-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://P-Linux.github.io/P-Linux-Core//build_install_iso/04_pass_1/</loc>
+     <lastmod>2016-03-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://P-Linux.github.io/P-Linux-Core//build_install_iso/05_pass_2/</loc>
+     <lastmod>2016-03-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
     
 
     

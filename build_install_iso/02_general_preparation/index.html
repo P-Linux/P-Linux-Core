@@ -10,7 +10,7 @@
         <link rel="shortcut icon" href="../../images/p_linux_favicon.ico">
         
 
-	<title>General Preparation - P-Linux-Core</title>
+	<title>02. General Preparation - P-Linux-Core</title>
 
         <link href="../../css/bootstrap-3.0.3.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -63,15 +63,27 @@
                     <ul class="dropdown-menu">
                     
                         <li >
-                            <a href="../00_build_an_install_iso/">Build A P-Linux Install ISO</a>
+                            <a href="../00_build_an_install_iso/">00. Build A P-Linux Install ISO</a>
                         </li>
                     
                         <li >
-                            <a href="../01_host_system_requirements/">Host System Requirements</a>
+                            <a href="../01_host_system_requirements/">01. Host System Requirements</a>
                         </li>
                     
                         <li class="active">
-                            <a href="./">General Preparation</a>
+                            <a href="./">02. General Preparation</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../03_optional_preparation/">03. Optional Preparation</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../04_pass_1/">04. PASS-1 (Constructing A Temporary System)</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../05_pass_2/">05. PASS-2 (Building A Base P-Linux System)</a>
                         </li>
                     
                     </ul>
@@ -109,7 +121,7 @@
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../../about/readme/">
+                    <a rel="prev" href="../03_optional_preparation/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -134,6 +146,8 @@
     
         <li class="main active"><a href="#general-preparation">General Preparation</a></li>
         
+            <li><a href="#exporting-the-lfs-variable">Exporting The 'LFS' Variable</a></li>
+        
             <li><a href="#clean-previous-setup">Clean Previous Setup</a></li>
         
             <li><a href="#create-a-new-setup">Create A New Setup</a></li>
@@ -155,6 +169,20 @@
 <a href="#automated-scripts">Link To Automated Scripts</a></p>
 </div>
 <p><strong>REMEMBER:</strong> This part is done via the <strong>root account</strong> of the host.</p>
+<h2 id="exporting-the-lfs-variable">Exporting The 'LFS' Variable<a class="headerlink" href="#exporting-the-lfs-variable" title="Permanent link"></a></h2>
+<p>This guide uses a target directory to build the new P-Linux ISO.</p>
+<p>Having this variable set is beneficial in that commands such as <code>mkdir -v $LFS/tools</code> can be typed literally.</p>
+<pre><code class="bash">export LFS='/mnt/lfs'
+</code></pre>
+
+<p>Check that the LFS variable is set up properly with:</p>
+<pre><code class="bash">echo $LFS
+</code></pre>
+
+<p>Which MUST return</p>
+<pre><code class="text">/mnt/lfs
+</code></pre>
+
 <h2 id="clean-previous-setup">Clean Previous Setup<a class="headerlink" href="#clean-previous-setup" title="Permanent link"></a></h2>
 <p>To compile <em>everything from scratch</em> it is best to remove any <code>user</code>, <code>group</code> and <code>directories</code> created by a previous
 run.</p>
@@ -177,7 +205,14 @@ run.</p>
 </code></pre>
 
 <h3 id="removing-any-existing-lfs-target-directory">Removing Any Existing 'lfs' Target Directory<a class="headerlink" href="#removing-any-existing-lfs-target-directory" title="Permanent link"></a></h3>
-<pre><code class="bash">rm -rf /mnt/lfs
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Make sure no application accesses <code>$LFS</code> or any sub-directories or files</p>
+</div>
+<p>We first make sure <code>$LFS/pkgmk</code> is not mounted see:
+<a href="../03_optional_preparation/#mounting-a-ram-disk">Optional Mounting A RAM Disk</a></p>
+<pre><code class="bash">umount -v $LFS/pkgmk
+rm -rf $LFS
 </code></pre>
 
 <h3 id="removing-any-existing-related-lfs-links">Removing Any Existing Related 'lfs' Links<a class="headerlink" href="#removing-any-existing-related-lfs-links" title="Permanent link"></a></h3>
@@ -190,21 +225,17 @@ rm -rf /sources
 rm -rf /pkgmk
 </code></pre>
 
+<h3 id="removing-previous-lfsswap-file">Removing Previous 'lfs.swap' File<a class="headerlink" href="#removing-previous-lfsswap-file" title="Permanent link"></a></h3>
+<p>This could exist if you have execute the <em>Optional Preparation</em> part.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Removing host path <code>/lfs.swap</code>: Are you sure you want that.</p>
+</div>
+<pre><code class="bash">swapoff /lfs.swap
+rm -rf /lfs.swap
+</code></pre>
+
 <h2 id="create-a-new-setup">Create A New Setup<a class="headerlink" href="#create-a-new-setup" title="Permanent link"></a></h2>
-<h3 id="exporting-the-lfs-configuration-variable">Exporting The 'LFS' Configuration Variable<a class="headerlink" href="#exporting-the-lfs-configuration-variable" title="Permanent link"></a></h3>
-<p>This guide uses a target directory to build the new P-Linux ISO.</p>
-<p>Having this variable set is beneficial in that commands such as <code>mkdir -v $LFS/tools</code> can be typed literally.</p>
-<pre><code class="bash">export LFS='/mnt/lfs'
-</code></pre>
-
-<p>Check that the LFS variable is set up properly with:</p>
-<pre><code class="bash">echo $LFS
-</code></pre>
-
-<p>Which MUST return</p>
-<pre><code class="text">/mnt/lfs
-</code></pre>
-
 <h3 id="creating-folders-links">Creating Folders &amp; Links<a class="headerlink" href="#creating-folders-links" title="Permanent link"></a></h3>
 <h4 id="directory-sources">Directory 'sources'<a class="headerlink" href="#directory-sources" title="Permanent link"></a></h4>
 <p>A list packages need to be downloaded in order to build a basic P-Linux system. Downloaded packages and patches will need
@@ -315,8 +346,9 @@ rather reads the <strong>.bashrc</strong> file instead.</p>
     &quot;export LFS LC_ALL LFS_TGT PATH&quot; &gt; '/home/lfs/.bashrc'
 </code></pre>
 
+<hr />
 <h2 id="automated-scripts">Automated Scripts<a class="headerlink" href="#automated-scripts" title="Permanent link"></a></h2>
-<p>If you did not manually execute these steps, you can run the automated scripts:</p>
+<p>If you did not manually execute these steps, you can run the automated scripts from the <strong>root  account</strong> of the host.</p>
 <h3 id="02_general_preparationsh">02_general_preparation.sh<a class="headerlink" href="#02_general_preparationsh" title="Permanent link"></a></h3>
 <p>See also <a href="../00_build_an_install_iso/#helper-scripts">Helper Scripts</a></p></div>
         </div>

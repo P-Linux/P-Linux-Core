@@ -23,7 +23,7 @@
         {
             "location": "/build_install_iso/00_build_an_install_iso/", 
             "text": "Build A P-Linux Install ISO\n\uf0c1\n\n\nThe aim of this short guide is to build /rebuild a 'Base P-Linux' installation ISO file.\n\n\n\n\n\nOverview\n\uf0c1\n\n\nThe target audience is a user who wants a clean and solid Linux distribution build from scratch.\n\n\nThis is based on the online documentation \nLinux From Scratch (LFS)\n and\nmost steps are automated and only a few require manual intervention.\nIt is still recommendet that you checkout the \nLinux From Scratch\n webpage.\n\n\n\n\nNote\n\n\nThe 64-bit build that results from this is considered a \"pure\" 64-bit system.\nThat is, \nit supports 64-bit executables only\n.\n\n\n\n\nThe finished ISO file can be burned on CD/DVD or written unto an USB-Stick. These can be used to install \nP-Linux\n\nsystems.\n\n\nHelper Scripts\n\uf0c1\n\n\nThere are helper scripts in the directory: \nP-Linux-Core/scripts/build_install_iso\n\n\nTo run a script excute: \nbash path_to_script\n\n\nEach section of this guide will mention related scripts.\n\n\nNOTE\n: most of the steps can be executed manually - but at the end of each section there are also references to\nrelated helper scripts.", 
-            "title": "Build A P-Linux Install ISO"
+            "title": "00. Build A P-Linux Install ISO"
         }, 
         {
             "location": "/build_install_iso/00_build_an_install_iso/#build-a-p-linux-install-iso", 
@@ -43,7 +43,7 @@
         {
             "location": "/build_install_iso/01_host_system_requirements/", 
             "text": "Host System Requirements\n\uf0c1\n\n\nWhat must the current operating system support.\n\n\n\n\n\nThis information is based on\n\nLinux From Scratch (LFS) - Host Requirements\n.\n\n\n\n\nNote\n\n\nThere might be differences between OUR REQUIREMENTS and what LFS suggests.\n\n\n\n\nRelated Helper Scripts\n\uf0c1\n\n\nSee also \nHelper Scripts\n\n\nversion-check.sh\n\uf0c1\n\n\nListing version numbers of critical development tools.\n\n\nlibrary-check.sh\n\uf0c1\n\n\nChecking for some library consistency.\n\n\nEXAMPLE output:\n\n\nroot [ /P-Linux-Core/scripts/build_install_iso ]# bash library-check.sh\n\n====\n Checking for some library consistency...\n\n       libgmp.la: not found\n       libmpfr.la: not found\n       libmpc.la: not found\n\n====\n NOTE....\n    -\n The files identified by this script should be all present\n    -\n           or all absent, but not only one or two present.\n\n\n\n\nHost System\n\uf0c1\n\n\nOFFICIAL TESTED HOST SYSTEM\n: \nP-Linux\n\n\nYour host system MUST be a Linux system for 64-bit (x86_64) architecture. At the moment there are no plans to\nsupport any other architecture.\n\n\nThe recommended host system in this order:\n\n\n\n\nP-Linux\n\n\nNuTyX-Linux\n\n\nbut most modern 64-bit Linux distributions should be fine too.\n\n\n\n\nRoot privileges\n on the host system are required.\n\n\nHost Required Software\n\uf0c1\n\n\nOFFICIAL TESTED HOST SOFTWARE\n: \nP-Linux\n with the versions indicated.\n\n\n\n\nNote\n\n\nMany distributions will place software headers into separate \ndevelopmet packages\n, often called\n\npackage-name-devel\n or \npackage-name-dev\n. Be sure to install those if your distribution provides them.\n\n\n\n\nFollowing software should be installed \nearlier or later versions\n of the listed software packages may work,\nbut have not been tested.\n\n\nBash 4.3.39\n\uf0c1\n\n\nBash: (/bin/sh should be a symbolic or hard link to bash)\n\n\n\n\nWarning\n\n\nMake sure you use only the \nBASH interpreter\n during this guide.\n\n\n\n\nBinutils 2.25.1\n\uf0c1\n\n\nBison 3.0.4\n\uf0c1\n\n\nBison: (/usr/bin/yacc should be a link to bison or small script that executes bison)\n\n\nBzip2 1.0.6\n\uf0c1\n\n\nCoreutils 8.24\n\uf0c1\n\n\nDiffutils 3.3\n\uf0c1\n\n\nFindutils 4.4.2\n\uf0c1\n\n\nGawk 4.1.3\n\uf0c1\n\n\nGawk: (/usr/bin/awk should be a link to gawk)\n\n\nGCC (including the C++ compiler) 5.3.0\n\uf0c1\n\n\nC++ 5.3.0\n\uf0c1\n\n\n\n\nNote\n\n\nIt is important to checking for some library consistency:\nSee \nRelated Helper Scripts\n.\n\n\n\n\nGlibc 2.22\n\uf0c1\n\n\nGrep 2.23\n\uf0c1\n\n\nGzip 1.6\n\uf0c1\n\n\nLinux Kernel 3.18.27\n\uf0c1\n\n\n\n\nNote\n\n\nAbsolute minimum required kernel version is: 2.6.32\n\n\nThe reason for the minimum kernel version requirement is\nthat we specify that version when building glibc at the recommendation of the developers.\nIt is also required by udev.\n\n\n\n\nM4 1.4.17\n\uf0c1\n\n\nMake 4.1\n\uf0c1\n\n\nPatch 2.7.5\n\uf0c1\n\n\nPerl 5.22.1\n\uf0c1\n\n\nSed 4.2.2\n\uf0c1\n\n\nTar 1.28\n\uf0c1\n\n\nTexinfo 6.0\n\uf0c1\n\n\nXz 5.2.2\n\uf0c1\n\n\nGit 2.7.1\n\uf0c1\n\n\nWget 1.17.1\n\uf0c1", 
-            "title": "Host System Requirements"
+            "title": "01. Host System Requirements"
         }, 
         {
             "location": "/build_install_iso/01_host_system_requirements/#host-system-requirements", 
@@ -197,13 +197,18 @@
         }, 
         {
             "location": "/build_install_iso/02_general_preparation/", 
-            "text": "General Preparation\n\uf0c1\n\n\nClean any previous setup (user, group, directories etc..) and create the new setup.\n\n\n\n\n\n\n\nNote\n\n\nYou can execute these steps manually or run automated scripts AFTER reading them:\n\nLink To Automated Scripts\n\n\n\n\nREMEMBER:\n This part is done via the \nroot account\n of the host.\n\n\nClean Previous Setup\n\uf0c1\n\n\nTo compile \neverything from scratch\n it is best to remove any \nuser\n, \ngroup\n and \ndirectories\n created by a previous\nrun.\n\n\n\n\nHint\n\n\nIf you have downloaded  \nsources\n from a previous build you may want to move them.\n\n\n\n\nRemoving User 'lfs' And Home-Directory\n\uf0c1\n\n\nuserdel --force --remove lfs\n\n\n\n\nOptions: userdel\n\n\n\n\n-f, --force\n: force removal of files, even if not owned by user\n\n\n-r, --remove\n: remove home directory and mail spool\n\n\n\n\nRemoving The Group 'lfs'\n\uf0c1\n\n\nNormally, by removing the user, the group is removed as well. If not sure run the following command.\n\n\ngroupdel lfs\n\n\n\n\nRemoving Any Existing 'lfs' Target Directory\n\uf0c1\n\n\nrm -rf /mnt/lfs\n\n\n\n\nRemoving Any Existing Related 'lfs' Links\n\uf0c1\n\n\n\n\nWarning\n\n\nRemoving host links/directories: Are you sure you want that.\n\n\n\n\nrm -rf /tools\nrm -rf /sources\nrm -rf /pkgmk\n\n\n\n\nCreate A New Setup\n\uf0c1\n\n\nExporting The 'LFS' Configuration Variable\n\uf0c1\n\n\nThis guide uses a target directory to build the new P-Linux ISO.\n\n\nHaving this variable set is beneficial in that commands such as \nmkdir -v $LFS/tools\n can be typed literally.\n\n\nexport LFS='/mnt/lfs'\n\n\n\n\nCheck that the LFS variable is set up properly with:\n\n\necho $LFS\n\n\n\n\nWhich MUST return\n\n\n/mnt/lfs\n\n\n\n\nCreating Folders \n Links\n\uf0c1\n\n\nDirectory 'sources'\n\uf0c1\n\n\nA list packages need to be downloaded in order to build a basic P-Linux system. Downloaded packages and patches will need\nto be stored somewhere that is conveniently available throughout the entire build.\n\n\nDirectory 'tools'\n\uf0c1\n\n\nAll programs compiled in the pass-1 will be installed under \n$LFS/tools\n to keep them separate from the programs\ncompiled in the pass-2. The pass-1 compiles temporary tools and will not be a part of the final P-Linux\nsystem. Keeping them in a separate directorymakes it easier to removem them later.\n\n\nDirectory 'pkgmk'\n\uf0c1\n\n\nThis directory is used by the P-Linux Package Management Utilities \np_cards\n to\nunback and compile the programs.\n\n\nLinks\n\uf0c1\n\n\nThe created symlinks enables the toolchain to be compiled so that it always refers to \n/tools\n (or the other links),\nmeaning that all will be accessable in the pass-1 (when we are still using some tools from the host) and in the  pass-2\n(when we are \u201cchrooted\u201d to the new P-Linux folder).\n\n\nThe same goes for the other links.\n\n\nTo Create The Folders \n Links\n\uf0c1\n\n\nmkdir -vp $LFS/{sources,tools,pkgmk}\nln -svf $LFS/tools /\nln -svf $LFS/sources /\nln -svf $LFS/pkgmk /\n\n\n\n\nOptions: mkdir\n\n\n\n\n-p, --parents\n:   no error if existing, make parent directories as needed\n\n\n\n\nCreating 'lfs' Group \n User\n\uf0c1\n\n\nIt is recommend to build the packages in pass-1 as an unprivileged user. To set up a clean working environment, we\ncreate a new user called \nlfs\n as a member of a new group (also named \nlfs\n). The password for this user is also set to\n\nlfs\n.\n\n\ngroupadd lfs\nuseradd -s /bin/bash -g lfs -m -k /dev/null lfs\necho \nlfs:lfs2\n | chpasswd -m\n\n\n\n\nOptions: useradd\n\n\n\n\n\n\n-s, --shell SHELL\n:   login shell of the new account\n\n\nIn our case:\n \n-s /bin/bash\n This makes bash the default shell for user lfs.\n\n\n\n\n\n\n-g, --gid GROUP\n:   name or ID of the primary group of the new account\n\n\nIn our case:\n \n-g lfs\n This option adds user lfs to group lfs.\n\n\n\n\n\n\n-m, --create-home\n:   create the user's home directory\n\n\n\n\n\n\n-k, --skel SKEL_DIR\n:   use this alternative skeleton directory\n\n\nIn our case:\n \n-k /dev/null\n This parameter prevents possible copying of files from a skeleton directory\n(default is /etc/skel) by changing the input location to the special null device.\n\n\n\n\n\n\nlfs\n: at the end is the actual name for the created user.\n\n\n\n\n\n\nOptions: chpasswd\n\n\n\n\n\n\n-m, --md5\n:   encrypt the clear text password using the MD5 algorithm\n\n\n\n\nthe command is  like this: \necho \"user_name:password_plaintext\" | chpasswd -m\n\n\n\n\n\n\n\n\nSetting Owner \n Mode Of Folders\n\uf0c1\n\n\nGrant user 'lfs' full access to $LFS and sub-directories by making lfs the directory owner:\n\n\nMake the \n$LFS/sources\n directory writable and sticky. \u201cSticky\u201d means that even if multiple users have write permission\non a directory, only the owner of a file can delete the file within a sticky directory.\n\n\nchown -v -R lfs $LFS\nchmod -v a+wt $LFS/sources\n\n\n\n\nOptions: chpasswd\n\n\n\n\n-R, --recursive\n:  operate on files and directories recursively\n\n\n\n\nCreating 'lfs' User Files\n\uf0c1\n\n\nSet up a good working environment by creating two new startup files for the \nlfs\n bash shell.\n\n\nbash_profile\n\uf0c1\n\n\nWhen logged on as user, the initial shell is usually a login shell which reads the \n/etc/profile\n of the host\n(probably containing some settings and environment variables) and then \n.bash_profile\n. The \nexec env -i.../bin/bash\n\ncommand in the \n.bash_profile\n file replaces the running shell with a new one with a completely empty environment,\nexcept for the HOME, TERM, and PS1 variables. This ensures that no unwanted environment variables from the host system\nleak into the build environment.\n\n\n\n\nNote\n\n\nWe use \nprintf\n instead of a \ncat and a heredoc\n because in the automated script we want to indent ithe line.\n\n\n\n\nprintf \n%s\\n\n \nexec env -i HOME=$HOME TERM=$TERM PS1='\\u:\\w\\$ ' /bin/bash\n \n '/home/lfs/.bash_profile'\n\n\n\n\nbashrc\n\uf0c1\n\n\nThe new instance of the shell is a non-login shell, which does not read the \n/etc/profile or .bash_profile files\n, but\nrather reads the \n.bashrc\n file instead.\n\n\n\n\nNote\n\n\nWe use \nprintf\n instead of a \ncat and a heredoc\n because in the automated script we want to indent ithe line.\n\n\n\n\nprintf \n%s\\n\n \nset +h\n \\\n    \numask 022\n \\\n    \nLFS=/mnt/lfs\n \\\n    \nLC_ALL=POSIX\n \\\n    \nLFS_TGT=$(uname -m)-lfs-linux-gnu\n \\\n    \nPATH=/tools/bin:/bin:/usr/bin\n \\\n    \nexport LFS LC_ALL LFS_TGT PATH\n \n '/home/lfs/.bashrc'\n\n\n\n\nAutomated Scripts\n\uf0c1\n\n\nIf you did not manually execute these steps, you can run the automated scripts:\n\n\n02_general_preparation.sh\n\uf0c1\n\n\nSee also \nHelper Scripts", 
-            "title": "General Preparation"
+            "text": "General Preparation\n\uf0c1\n\n\nClean any previous setup (user, group, directories etc..) and create the new setup.\n\n\n\n\n\n\n\nNote\n\n\nYou can execute these steps manually or run automated scripts AFTER reading them:\n\nLink To Automated Scripts\n\n\n\n\nREMEMBER:\n This part is done via the \nroot account\n of the host.\n\n\nExporting The 'LFS' Variable\n\uf0c1\n\n\nThis guide uses a target directory to build the new P-Linux ISO.\n\n\nHaving this variable set is beneficial in that commands such as \nmkdir -v $LFS/tools\n can be typed literally.\n\n\nexport LFS='/mnt/lfs'\n\n\n\n\nCheck that the LFS variable is set up properly with:\n\n\necho $LFS\n\n\n\n\nWhich MUST return\n\n\n/mnt/lfs\n\n\n\n\nClean Previous Setup\n\uf0c1\n\n\nTo compile \neverything from scratch\n it is best to remove any \nuser\n, \ngroup\n and \ndirectories\n created by a previous\nrun.\n\n\n\n\nHint\n\n\nIf you have downloaded  \nsources\n from a previous build you may want to move them.\n\n\n\n\nRemoving User 'lfs' And Home-Directory\n\uf0c1\n\n\nuserdel --force --remove lfs\n\n\n\n\nOptions: userdel\n\n\n\n\n-f, --force\n: force removal of files, even if not owned by user\n\n\n-r, --remove\n: remove home directory and mail spool\n\n\n\n\nRemoving The Group 'lfs'\n\uf0c1\n\n\nNormally, by removing the user, the group is removed as well. If not sure run the following command.\n\n\ngroupdel lfs\n\n\n\n\nRemoving Any Existing 'lfs' Target Directory\n\uf0c1\n\n\n\n\nHint\n\n\nMake sure no application accesses \n$LFS\n or any sub-directories or files\n\n\n\n\nWe first make sure \n$LFS/pkgmk\n is not mounted see:\n\nOptional Mounting A RAM Disk\n\n\numount -v $LFS/pkgmk\nrm -rf $LFS\n\n\n\n\nRemoving Any Existing Related 'lfs' Links\n\uf0c1\n\n\n\n\nWarning\n\n\nRemoving host links/directories: Are you sure you want that.\n\n\n\n\nrm -rf /tools\nrm -rf /sources\nrm -rf /pkgmk\n\n\n\n\nRemoving Previous 'lfs.swap' File\n\uf0c1\n\n\nThis could exist if you have execute the \nOptional Preparation\n part.\n\n\n\n\nWarning\n\n\nRemoving host path \n/lfs.swap\n: Are you sure you want that.\n\n\n\n\nswapoff /lfs.swap\nrm -rf /lfs.swap\n\n\n\n\nCreate A New Setup\n\uf0c1\n\n\nCreating Folders \n Links\n\uf0c1\n\n\nDirectory 'sources'\n\uf0c1\n\n\nA list packages need to be downloaded in order to build a basic P-Linux system. Downloaded packages and patches will need\nto be stored somewhere that is conveniently available throughout the entire build.\n\n\nDirectory 'tools'\n\uf0c1\n\n\nAll programs compiled in the pass-1 will be installed under \n$LFS/tools\n to keep them separate from the programs\ncompiled in the pass-2. The pass-1 compiles temporary tools and will not be a part of the final P-Linux\nsystem. Keeping them in a separate directorymakes it easier to removem them later.\n\n\nDirectory 'pkgmk'\n\uf0c1\n\n\nThis directory is used by the P-Linux Package Management Utilities \np_cards\n to\nunback and compile the programs.\n\n\nLinks\n\uf0c1\n\n\nThe created symlinks enables the toolchain to be compiled so that it always refers to \n/tools\n (or the other links),\nmeaning that all will be accessable in the pass-1 (when we are still using some tools from the host) and in the  pass-2\n(when we are \u201cchrooted\u201d to the new P-Linux folder).\n\n\nThe same goes for the other links.\n\n\nTo Create The Folders \n Links\n\uf0c1\n\n\nmkdir -vp $LFS/{sources,tools,pkgmk}\nln -svf $LFS/tools /\nln -svf $LFS/sources /\nln -svf $LFS/pkgmk /\n\n\n\n\nOptions: mkdir\n\n\n\n\n-p, --parents\n:   no error if existing, make parent directories as needed\n\n\n\n\nCreating 'lfs' Group \n User\n\uf0c1\n\n\nIt is recommend to build the packages in pass-1 as an unprivileged user. To set up a clean working environment, we\ncreate a new user called \nlfs\n as a member of a new group (also named \nlfs\n). The password for this user is also set to\n\nlfs\n.\n\n\ngroupadd lfs\nuseradd -s /bin/bash -g lfs -m -k /dev/null lfs\necho \nlfs:lfs2\n | chpasswd -m\n\n\n\n\nOptions: useradd\n\n\n\n\n\n\n-s, --shell SHELL\n:   login shell of the new account\n\n\nIn our case:\n \n-s /bin/bash\n This makes bash the default shell for user lfs.\n\n\n\n\n\n\n-g, --gid GROUP\n:   name or ID of the primary group of the new account\n\n\nIn our case:\n \n-g lfs\n This option adds user lfs to group lfs.\n\n\n\n\n\n\n-m, --create-home\n:   create the user's home directory\n\n\n\n\n\n\n-k, --skel SKEL_DIR\n:   use this alternative skeleton directory\n\n\nIn our case:\n \n-k /dev/null\n This parameter prevents possible copying of files from a skeleton directory\n(default is /etc/skel) by changing the input location to the special null device.\n\n\n\n\n\n\nlfs\n: at the end is the actual name for the created user.\n\n\n\n\n\n\nOptions: chpasswd\n\n\n\n\n\n\n-m, --md5\n:   encrypt the clear text password using the MD5 algorithm\n\n\n\n\nthe command is  like this: \necho \"user_name:password_plaintext\" | chpasswd -m\n\n\n\n\n\n\n\n\nSetting Owner \n Mode Of Folders\n\uf0c1\n\n\nGrant user 'lfs' full access to $LFS and sub-directories by making lfs the directory owner:\n\n\nMake the \n$LFS/sources\n directory writable and sticky. \u201cSticky\u201d means that even if multiple users have write permission\non a directory, only the owner of a file can delete the file within a sticky directory.\n\n\nchown -v -R lfs $LFS\nchmod -v a+wt $LFS/sources\n\n\n\n\nOptions: chpasswd\n\n\n\n\n-R, --recursive\n:  operate on files and directories recursively\n\n\n\n\nCreating 'lfs' User Files\n\uf0c1\n\n\nSet up a good working environment by creating two new startup files for the \nlfs\n bash shell.\n\n\nbash_profile\n\uf0c1\n\n\nWhen logged on as user, the initial shell is usually a login shell which reads the \n/etc/profile\n of the host\n(probably containing some settings and environment variables) and then \n.bash_profile\n. The \nexec env -i.../bin/bash\n\ncommand in the \n.bash_profile\n file replaces the running shell with a new one with a completely empty environment,\nexcept for the HOME, TERM, and PS1 variables. This ensures that no unwanted environment variables from the host system\nleak into the build environment.\n\n\n\n\nNote\n\n\nWe use \nprintf\n instead of a \ncat and a heredoc\n because in the automated script we want to indent ithe line.\n\n\n\n\nprintf \n%s\\n\n \nexec env -i HOME=$HOME TERM=$TERM PS1='\\u:\\w\\$ ' /bin/bash\n \n '/home/lfs/.bash_profile'\n\n\n\n\nbashrc\n\uf0c1\n\n\nThe new instance of the shell is a non-login shell, which does not read the \n/etc/profile or .bash_profile files\n, but\nrather reads the \n.bashrc\n file instead.\n\n\n\n\nNote\n\n\nWe use \nprintf\n instead of a \ncat and a heredoc\n because in the automated script we want to indent ithe line.\n\n\n\n\nprintf \n%s\\n\n \nset +h\n \\\n    \numask 022\n \\\n    \nLFS=/mnt/lfs\n \\\n    \nLC_ALL=POSIX\n \\\n    \nLFS_TGT=$(uname -m)-lfs-linux-gnu\n \\\n    \nPATH=/tools/bin:/bin:/usr/bin\n \\\n    \nexport LFS LC_ALL LFS_TGT PATH\n \n '/home/lfs/.bashrc'\n\n\n\n\n\n\nAutomated Scripts\n\uf0c1\n\n\nIf you did not manually execute these steps, you can run the automated scripts from the \nroot  account\n of the host.\n\n\n02_general_preparation.sh\n\uf0c1\n\n\nSee also \nHelper Scripts", 
+            "title": "02. General Preparation"
         }, 
         {
             "location": "/build_install_iso/02_general_preparation/#general-preparation", 
             "text": "Clean any previous setup (user, group, directories etc..) and create the new setup.    Note  You can execute these steps manually or run automated scripts AFTER reading them: Link To Automated Scripts   REMEMBER:  This part is done via the  root account  of the host.", 
             "title": "General Preparation"
+        }, 
+        {
+            "location": "/build_install_iso/02_general_preparation/#exporting-the-lfs-variable", 
+            "text": "This guide uses a target directory to build the new P-Linux ISO.  Having this variable set is beneficial in that commands such as  mkdir -v $LFS/tools  can be typed literally.  export LFS='/mnt/lfs'  Check that the LFS variable is set up properly with:  echo $LFS  Which MUST return  /mnt/lfs", 
+            "title": "Exporting The 'LFS' Variable"
         }, 
         {
             "location": "/build_install_iso/02_general_preparation/#clean-previous-setup", 
@@ -222,7 +227,7 @@
         }, 
         {
             "location": "/build_install_iso/02_general_preparation/#removing-any-existing-lfs-target-directory", 
-            "text": "rm -rf /mnt/lfs", 
+            "text": "Hint  Make sure no application accesses  $LFS  or any sub-directories or files   We first make sure  $LFS/pkgmk  is not mounted see: Optional Mounting A RAM Disk  umount -v $LFS/pkgmk\nrm -rf $LFS", 
             "title": "Removing Any Existing 'lfs' Target Directory"
         }, 
         {
@@ -231,14 +236,14 @@
             "title": "Removing Any Existing Related 'lfs' Links"
         }, 
         {
+            "location": "/build_install_iso/02_general_preparation/#removing-previous-lfsswap-file", 
+            "text": "This could exist if you have execute the  Optional Preparation  part.   Warning  Removing host path  /lfs.swap : Are you sure you want that.   swapoff /lfs.swap\nrm -rf /lfs.swap", 
+            "title": "Removing Previous 'lfs.swap' File"
+        }, 
+        {
             "location": "/build_install_iso/02_general_preparation/#create-a-new-setup", 
             "text": "", 
             "title": "Create A New Setup"
-        }, 
-        {
-            "location": "/build_install_iso/02_general_preparation/#exporting-the-lfs-configuration-variable", 
-            "text": "This guide uses a target directory to build the new P-Linux ISO.  Having this variable set is beneficial in that commands such as  mkdir -v $LFS/tools  can be typed literally.  export LFS='/mnt/lfs'  Check that the LFS variable is set up properly with:  echo $LFS  Which MUST return  /mnt/lfs", 
-            "title": "Exporting The 'LFS' Configuration Variable"
         }, 
         {
             "location": "/build_install_iso/02_general_preparation/#creating-folders-links", 
@@ -297,13 +302,123 @@
         }, 
         {
             "location": "/build_install_iso/02_general_preparation/#automated-scripts", 
-            "text": "If you did not manually execute these steps, you can run the automated scripts:", 
+            "text": "If you did not manually execute these steps, you can run the automated scripts from the  root  account  of the host.", 
             "title": "Automated Scripts"
         }, 
         {
             "location": "/build_install_iso/02_general_preparation/#02_general_preparationsh", 
             "text": "See also  Helper Scripts", 
             "title": "02_general_preparation.sh"
+        }, 
+        {
+            "location": "/build_install_iso/03_optional_preparation/", 
+            "text": "Optional Preparation\n\uf0c1\n\n\nSpeed up compilation using RAM Disk \n&\n SAWP File.\n\n\n\n\n\n\n\nNote\n\n\nYou can execute these steps manually or run automated scripts AFTER reading them:\n\nLink To Automated Scripts\n\n\n\n\nREMEMBER:\n This part is done via the \nroot account\n of the host.\n\n\nThis part is optional but higly recommended.\n\n\nMounting A RAM Disk\n\uf0c1\n\n\nOne way to reduce disk access and prolonging the life of the disk \nas well as to speed up compilation\n in many cases, \nis by using a RAM Disk.\n\n\nNote you need a decent amount of ram that is dynamically used (this won't be used when you are not building a package).\nRecommended are 4 GiB or more.\n\n\nMounting '/pkgmk' as type: tmpfs\n\uf0c1\n\n\nSet \nsize=80%\n or a defined number e.g. \nsize=3G\n\n\nmount -v -t tmpfs -o defaults,noatime,size=80%  pkgmk /pkgmk\n\n\n\n\n\n\nHint\n\n\nThis is only temporar, in case you reboot the host during the following steps: you must re-do this.\n\n\n\n\nNOTE for later\n: since you are now compiling in memory there is no point in keeping a compiler flag \n-pipe\n as this \nwill decrease performance.\n\n\nVerify 'pkgmk' tmpfs Is Enabled\n\uf0c1\n\n\ndf -h\n\n\n\n\nCreating A SWAP-File\n\uf0c1\n\n\nExample uses 6GiB\n\n\nfallocate -l 6G /lfs.swap\n\n\n\n\nIf fallocate fails or is not installed, use the \ndd\n command to create the file.\n\n\nFormating The SWAP-File\n\uf0c1\n\n\nmkswap /lfs.swap\n\n\n\n\nOptional 'chmod' The SWAP-File\n\uf0c1\n\n\nchmod 600 /lfs.swap\n\n\n\n\nEnable The SWAP-File\n\uf0c1\n\n\nswapon /lfs.swap\n\n\n\n\nVerify iThe SWAP-File Is Enabled\n\uf0c1\n\n\nfree -h\n\n\n\n\nUseful Commands\n\uf0c1\n\n\nOne can run this in another terminal during compilation.\n\n\nTo Check RAM/SWAP Usage\n\uf0c1\n\n\nfree -h\n\n\n\n\n\n\nAutomated Scripts\n\uf0c1\n\n\nIf you did not manually execute these steps, you can run the automated scripts from the \nroot  account\n of the host.\n\n\n03_optional_preparation.sh\n\uf0c1\n\n\nSee also \nHelper Scripts", 
+            "title": "03. Optional Preparation"
+        }, 
+        {
+            "location": "/build_install_iso/03_optional_preparation/#optional-preparation", 
+            "text": "Speed up compilation using RAM Disk  &  SAWP File.    Note  You can execute these steps manually or run automated scripts AFTER reading them: Link To Automated Scripts   REMEMBER:  This part is done via the  root account  of the host.  This part is optional but higly recommended.", 
+            "title": "Optional Preparation"
+        }, 
+        {
+            "location": "/build_install_iso/03_optional_preparation/#mounting-a-ram-disk", 
+            "text": "One way to reduce disk access and prolonging the life of the disk  as well as to speed up compilation  in many cases, \nis by using a RAM Disk.  Note you need a decent amount of ram that is dynamically used (this won't be used when you are not building a package).\nRecommended are 4 GiB or more.", 
+            "title": "Mounting A RAM Disk"
+        }, 
+        {
+            "location": "/build_install_iso/03_optional_preparation/#mounting-pkgmk-as-type-tmpfs", 
+            "text": "Set  size=80%  or a defined number e.g.  size=3G  mount -v -t tmpfs -o defaults,noatime,size=80%  pkgmk /pkgmk   Hint  This is only temporar, in case you reboot the host during the following steps: you must re-do this.   NOTE for later : since you are now compiling in memory there is no point in keeping a compiler flag  -pipe  as this \nwill decrease performance.", 
+            "title": "Mounting '/pkgmk' as type: tmpfs"
+        }, 
+        {
+            "location": "/build_install_iso/03_optional_preparation/#verify-pkgmk-tmpfs-is-enabled", 
+            "text": "df -h", 
+            "title": "Verify 'pkgmk' tmpfs Is Enabled"
+        }, 
+        {
+            "location": "/build_install_iso/03_optional_preparation/#creating-a-swap-file", 
+            "text": "Example uses 6GiB  fallocate -l 6G /lfs.swap  If fallocate fails or is not installed, use the  dd  command to create the file.", 
+            "title": "Creating A SWAP-File"
+        }, 
+        {
+            "location": "/build_install_iso/03_optional_preparation/#formating-the-swap-file", 
+            "text": "mkswap /lfs.swap", 
+            "title": "Formating The SWAP-File"
+        }, 
+        {
+            "location": "/build_install_iso/03_optional_preparation/#optional-chmod-the-swap-file", 
+            "text": "chmod 600 /lfs.swap", 
+            "title": "Optional 'chmod' The SWAP-File"
+        }, 
+        {
+            "location": "/build_install_iso/03_optional_preparation/#enable-the-swap-file", 
+            "text": "swapon /lfs.swap", 
+            "title": "Enable The SWAP-File"
+        }, 
+        {
+            "location": "/build_install_iso/03_optional_preparation/#verify-ithe-swap-file-is-enabled", 
+            "text": "free -h", 
+            "title": "Verify iThe SWAP-File Is Enabled"
+        }, 
+        {
+            "location": "/build_install_iso/03_optional_preparation/#useful-commands", 
+            "text": "One can run this in another terminal during compilation.", 
+            "title": "Useful Commands"
+        }, 
+        {
+            "location": "/build_install_iso/03_optional_preparation/#to-check-ramswap-usage", 
+            "text": "free -h", 
+            "title": "To Check RAM/SWAP Usage"
+        }, 
+        {
+            "location": "/build_install_iso/03_optional_preparation/#automated-scripts", 
+            "text": "If you did not manually execute these steps, you can run the automated scripts from the  root  account  of the host.", 
+            "title": "Automated Scripts"
+        }, 
+        {
+            "location": "/build_install_iso/03_optional_preparation/#03_optional_preparationsh", 
+            "text": "See also  Helper Scripts", 
+            "title": "03_optional_preparation.sh"
+        }, 
+        {
+            "location": "/build_install_iso/04_pass_1/", 
+            "text": "PASS-1\n\uf0c1\n\n\nConstructing a Temporary System.\n\n\n\n\n\n\n\nNote\n\n\nYou can execute these steps manually or run automated scripts AFTER reading them:\n\nLink To Automated Scripts\n\n\n\n\nREMEMBER:\n This part is done via the \nlfs unprivileged account\n of the host.\n\n\n```\n\n\n\n\nAutomated Scripts\n\uf0c1\n\n\nIf you did not manually execute these steps, you can run the automated scripts from the \nroot  account\n of the host.\n\n\n\n\nIMPORTANT\n\n\nEventhough we use the \nlfs unprivileged account\n for manual execution, we run the automated script from the \n\nroot  account\n.\n\n\n\n\n04_pass_1.sh\n\uf0c1\n\n\nSee also \nHelper Scripts", 
+            "title": "04. PASS-1 (Constructing A Temporary System)"
+        }, 
+        {
+            "location": "/build_install_iso/04_pass_1/#pass-1", 
+            "text": "Constructing a Temporary System.    Note  You can execute these steps manually or run automated scripts AFTER reading them: Link To Automated Scripts   REMEMBER:  This part is done via the  lfs unprivileged account  of the host.  ```", 
+            "title": "PASS-1"
+        }, 
+        {
+            "location": "/build_install_iso/04_pass_1/#automated-scripts", 
+            "text": "If you did not manually execute these steps, you can run the automated scripts from the  root  account  of the host.   IMPORTANT  Eventhough we use the  lfs unprivileged account  for manual execution, we run the automated script from the  root  account .", 
+            "title": "Automated Scripts"
+        }, 
+        {
+            "location": "/build_install_iso/04_pass_1/#04_pass_1sh", 
+            "text": "See also  Helper Scripts", 
+            "title": "04_pass_1.sh"
+        }, 
+        {
+            "location": "/build_install_iso/05_pass_2/", 
+            "text": "PASS-2\n\uf0c1\n\n\nBuilding a base P-Linux System.\n\n\n\n\n\n\n\nNote\n\n\nYou can execute these steps manually or run automated scripts AFTER reading them:\n\nLink To Automated Scripts\n\n\n\n\nREMEMBER:\n This part is done via the \nlfs unprivileged account\n of the host.\n\n\n```\n\n\n\n\nAutomated Scripts\n\uf0c1\n\n\nIf you did not manually execute these steps, you can run the automated scripts from the \nroot  account\n of the host.\n\n\n\n\nIMPORTANT\n\n\nEventhough we use the \nlfs unprivileged account\n for manual execution, we run the automated script from the \n\nroot  account\n.\n\n\n\n\n05_pass_2.sh\n\uf0c1\n\n\nSee also \nHelper Scripts", 
+            "title": "05. PASS-2 (Building A Base P-Linux System)"
+        }, 
+        {
+            "location": "/build_install_iso/05_pass_2/#pass-2", 
+            "text": "Building a base P-Linux System.    Note  You can execute these steps manually or run automated scripts AFTER reading them: Link To Automated Scripts   REMEMBER:  This part is done via the  lfs unprivileged account  of the host.  ```", 
+            "title": "PASS-2"
+        }, 
+        {
+            "location": "/build_install_iso/05_pass_2/#automated-scripts", 
+            "text": "If you did not manually execute these steps, you can run the automated scripts from the  root  account  of the host.   IMPORTANT  Eventhough we use the  lfs unprivileged account  for manual execution, we run the automated script from the  root  account .", 
+            "title": "Automated Scripts"
+        }, 
+        {
+            "location": "/build_install_iso/05_pass_2/#05_pass_2sh", 
+            "text": "See also  Helper Scripts", 
+            "title": "05_pass_2.sh"
         }, 
         {
             "location": "/about/readme/", 

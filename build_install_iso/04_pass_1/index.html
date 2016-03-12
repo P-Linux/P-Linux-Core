@@ -6,11 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <meta name="author" content="peter1000">
-        <link rel="canonical" href="https://P-Linux.github.io/P-Linux-Core/about/readme/">
+        <link rel="canonical" href="https://P-Linux.github.io/P-Linux-Core/build_install_iso/04_pass_1/">
         <link rel="shortcut icon" href="../../images/p_linux_favicon.ico">
         
 
-	<title>Readme - P-Linux-Core</title>
+	<title>04. PASS-1 (Constructing A Temporary System) - P-Linux-Core</title>
 
         <link href="../../css/bootstrap-3.0.3.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -58,32 +58,32 @@
             
             
             
-                <li class="dropdown">
+                <li class="dropdown active">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Install-ISO <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
                         <li >
-                            <a href="../../build_install_iso/00_build_an_install_iso/">00. Build A P-Linux Install ISO</a>
+                            <a href="../00_build_an_install_iso/">00. Build A P-Linux Install ISO</a>
                         </li>
                     
                         <li >
-                            <a href="../../build_install_iso/01_host_system_requirements/">01. Host System Requirements</a>
+                            <a href="../01_host_system_requirements/">01. Host System Requirements</a>
                         </li>
                     
                         <li >
-                            <a href="../../build_install_iso/02_general_preparation/">02. General Preparation</a>
+                            <a href="../02_general_preparation/">02. General Preparation</a>
                         </li>
                     
                         <li >
-                            <a href="../../build_install_iso/03_optional_preparation/">03. Optional Preparation</a>
+                            <a href="../03_optional_preparation/">03. Optional Preparation</a>
+                        </li>
+                    
+                        <li class="active">
+                            <a href="./">04. PASS-1 (Constructing A Temporary System)</a>
                         </li>
                     
                         <li >
-                            <a href="../../build_install_iso/04_pass_1/">04. PASS-1 (Constructing A Temporary System)</a>
-                        </li>
-                    
-                        <li >
-                            <a href="../../build_install_iso/05_pass_2/">05. PASS-2 (Building A Base P-Linux System)</a>
+                            <a href="../05_pass_2/">05. PASS-2 (Building A Base P-Linux System)</a>
                         </li>
                     
                     </ul>
@@ -91,20 +91,20 @@
             
             
             
-                <li class="dropdown active">
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
-                        <li class="active">
-                            <a href="./">Readme</a>
+                        <li >
+                            <a href="../../about/readme/">Readme</a>
                         </li>
                     
                         <li >
-                            <a href="../license/">License</a>
+                            <a href="../../about/license/">License</a>
                         </li>
                     
                         <li >
-                            <a href="../release-notes/">Release Notes</a>
+                            <a href="../../about/release-notes/">Release Notes</a>
                         </li>
                     
                     </ul>
@@ -116,12 +116,12 @@
             <!-- Search, Navigation and Repo links -->
             <ul class="nav navbar-nav navbar-right">
                 <li >
-                    <a rel="next" href="../../build_install_iso/05_pass_2/">
+                    <a rel="next" href="../03_optional_preparation/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
                 <li >
-                    <a rel="prev" href="../license/">
+                    <a rel="prev" href="../05_pass_2/">
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -144,30 +144,36 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#p-linux-core">P-Linux-Core</a></li>
+        <li class="main active"><a href="#pass-1">PASS-1</a></li>
         
-            <li><a href="#web-presence">Web Presence</a></li>
+            <li><a href="#automated-scripts">Automated Scripts</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<div align="center">
-    <a href="https://github.com/P-Linux/">
-        <img src="images/p-linux-logo.png" alt="P-Linux LOGO" title="The P-Linux Organization.">
-    </a>
-</div>
-
-<h1 id="p-linux-core">P-Linux-Core<a class="headerlink" href="#p-linux-core" title="Permanent link"></a></h1>
-<p align="center">Scripts, programs, documentation for compiling, installing and using a P-Linux system.</p>
+<h1 id="pass-1">PASS-1<a class="headerlink" href="#pass-1" title="Permanent link"></a></h1>
+<p align="center">Constructing a Temporary System.</p>
 
 <hr />
-<h2 id="web-presence">Web Presence<a class="headerlink" href="#web-presence" title="Permanent link"></a></h2>
-<ul>
-<li>P-Linux-Core <a href="https://P-Linux.github.io/P-Linux-Core/">web site - documentation</a></li>
-<li>P-Linux-Core <a href="https://github.com/P-Linux/P-Linux-Core.git/">github repository</a></li>
-</ul></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can execute these steps manually or run automated scripts AFTER reading them:
+<a href="#automated-scripts">Link To Automated Scripts</a></p>
+</div>
+<p><strong>REMEMBER:</strong> This part is done via the <strong>lfs unprivileged account</strong> of the host.</p>
+<p>```</p>
+<hr />
+<h2 id="automated-scripts">Automated Scripts<a class="headerlink" href="#automated-scripts" title="Permanent link"></a></h2>
+<p>If you did not manually execute these steps, you can run the automated scripts from the <strong>root  account</strong> of the host.</p>
+<div class="admonition warning">
+<p class="admonition-title">IMPORTANT</p>
+<p>Eventhough we use the <strong>lfs unprivileged account</strong> for manual execution, we run the automated script from the 
+<strong>root  account</strong>.</p>
+</div>
+<h3 id="04_pass_1sh">04_pass_1.sh<a class="headerlink" href="#04_pass_1sh" title="Permanent link"></a></h3>
+<p>See also <a href="../00_build_an_install_iso/#helper-scripts">Helper Scripts</a></p></div>
         </div>
 
 	<footer class="col-md-12">
