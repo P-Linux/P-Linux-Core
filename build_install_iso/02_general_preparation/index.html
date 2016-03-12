@@ -136,7 +136,7 @@
         
             <li><a href="#clean-previous-setup">Clean Previous Setup</a></li>
         
-            <li><a href="#installation-target">Installation Target</a></li>
+            <li><a href="#create-a-new-setup">Create A New Setup</a></li>
         
             <li><a href="#automated-scripts">Automated Scripts</a></li>
         
@@ -146,7 +146,7 @@
             <div class="col-md-9" role="main">
 
 <h1 id="general-preparation">General Preparation<a class="headerlink" href="#general-preparation" title="Permanent link"></a></h1>
-<p align="center">Clean any previous setup (user, group, directories etc..) and create the target directory.</p>
+<p align="center">Clean any previous setup (user, group, directories etc..) and create the new setup.</p>
 
 <hr />
 <div class="admonition note">
@@ -154,6 +154,7 @@
 <p>You can execute these steps manually or run automated scripts AFTER reading them:
 <a href="#automated-scripts">Link To Automated Scripts</a></p>
 </div>
+<p><strong>REMEMBER:</strong> This part is done via the <strong>root account</strong> of the host.</p>
 <h2 id="clean-previous-setup">Clean Previous Setup<a class="headerlink" href="#clean-previous-setup" title="Permanent link"></a></h2>
 <p>To compile <em>everything from scratch</em> it is best to remove any <code>user</code>, <code>group</code> and <code>directories</code> created by a previous
 run.</p>
@@ -165,7 +166,7 @@ run.</p>
 <pre><code class="bash">userdel --force --remove lfs
 </code></pre>
 
-<p><em>Options:</em></p>
+<p><em>Options: userdel</em></p>
 <ul>
 <li><code>-f, --force</code>: force removal of files, even if not owned by user</li>
 <li><code>-r, --remove</code>: remove home directory and mail spool</li>
@@ -186,12 +187,132 @@ run.</p>
 </div>
 <pre><code class="bash">rm -rf /tools
 rm -rf /sources
+rm -rf /pkgmk
 </code></pre>
 
-<h2 id="installation-target">Installation Target<a class="headerlink" href="#installation-target" title="Permanent link"></a></h2>
+<h2 id="create-a-new-setup">Create A New Setup<a class="headerlink" href="#create-a-new-setup" title="Permanent link"></a></h2>
+<h3 id="exporting-the-lfs-configuration-variable">Exporting The 'LFS' Configuration Variable<a class="headerlink" href="#exporting-the-lfs-configuration-variable" title="Permanent link"></a></h3>
 <p>This guide uses a target directory to build the new P-Linux ISO.</p>
-<h3 id="creating-a-new-target-directory">Creating A New Target Directory<a class="headerlink" href="#creating-a-new-target-directory" title="Permanent link"></a></h3>
-<pre><code class="bash">mkdir /mnt/lfs
+<p>Having this variable set is beneficial in that commands such as <code>mkdir -v $LFS/tools</code> can be typed literally.</p>
+<pre><code class="bash">export LFS='/mnt/lfs'
+</code></pre>
+
+<p>Check that the LFS variable is set up properly with:</p>
+<pre><code class="bash">echo $LFS
+</code></pre>
+
+<p>Which MUST return</p>
+<pre><code class="text">/mnt/lfs
+</code></pre>
+
+<h3 id="creating-folders-links">Creating Folders &amp; Links<a class="headerlink" href="#creating-folders-links" title="Permanent link"></a></h3>
+<h4 id="directory-sources">Directory 'sources'<a class="headerlink" href="#directory-sources" title="Permanent link"></a></h4>
+<p>A list packages need to be downloaded in order to build a basic P-Linux system. Downloaded packages and patches will need
+to be stored somewhere that is conveniently available throughout the entire build.</p>
+<h4 id="directory-tools">Directory 'tools'<a class="headerlink" href="#directory-tools" title="Permanent link"></a></h4>
+<p>All programs compiled in the pass-1 will be installed under <code>$LFS/tools</code> to keep them separate from the programs
+compiled in the pass-2. The pass-1 compiles temporary tools and will not be a part of the final P-Linux
+system. Keeping them in a separate directorymakes it easier to removem them later.</p>
+<h4 id="directory-pkgmk">Directory 'pkgmk'<a class="headerlink" href="#directory-pkgmk" title="Permanent link"></a></h4>
+<p>This directory is used by the P-Linux Package Management Utilities <a href="https://github.com/P-Linux/p_cards">p_cards</a> to
+unback and compile the programs.</p>
+<h4 id="links">Links<a class="headerlink" href="#links" title="Permanent link"></a></h4>
+<p>The created symlinks enables the toolchain to be compiled so that it always refers to <code>/tools</code> (or the other links),
+meaning that all will be accessable in the pass-1 (when we are still using some tools from the host) and in the  pass-2
+(when we are “chrooted” to the new P-Linux folder).</p>
+<p>The same goes for the other links.</p>
+<h4 id="to-create-the-folders-links">To Create The Folders &amp; Links<a class="headerlink" href="#to-create-the-folders-links" title="Permanent link"></a></h4>
+<pre><code class="bash">mkdir -vp $LFS/{sources,tools,pkgmk}
+ln -svf $LFS/tools /
+ln -svf $LFS/sources /
+ln -svf $LFS/pkgmk /
+</code></pre>
+
+<p><em>Options: mkdir</em></p>
+<ul>
+<li><code>-p, --parents</code>:   no error if existing, make parent directories as needed</li>
+</ul>
+<h3 id="creating-lfs-group-user">Creating 'lfs' Group &amp; User<a class="headerlink" href="#creating-lfs-group-user" title="Permanent link"></a></h3>
+<p>It is recommend to build the packages in pass-1 as an unprivileged user. To set up a clean working environment, we
+create a new user called <code>lfs</code> as a member of a new group (also named <code>lfs</code>). The password for this user is also set to
+<code>lfs</code>.</p>
+<pre><code class="bash">groupadd lfs
+useradd -s /bin/bash -g lfs -m -k /dev/null lfs
+echo &quot;lfs:lfs2&quot; | chpasswd -m
+</code></pre>
+
+<p><em>Options: useradd</em></p>
+<ul>
+<li>
+<p><code>-s, --shell SHELL</code>:   login shell of the new account</p>
+<p><em>In our case:</em> <code>-s /bin/bash</code> This makes bash the default shell for user lfs.</p>
+</li>
+<li>
+<p><code>-g, --gid GROUP</code>:   name or ID of the primary group of the new account</p>
+<p><em>In our case:</em> <code>-g lfs</code> This option adds user lfs to group lfs.</p>
+</li>
+<li>
+<p><code>-m, --create-home</code>:   create the user's home directory</p>
+</li>
+<li>
+<p><code>-k, --skel SKEL_DIR</code>:   use this alternative skeleton directory</p>
+<p><em>In our case:</em> <code>-k /dev/null</code> This parameter prevents possible copying of files from a skeleton directory
+(default is /etc/skel) by changing the input location to the special null device.</p>
+</li>
+<li>
+<p><code>lfs</code>: at the end is the actual name for the created user.</p>
+</li>
+</ul>
+<p><em>Options: chpasswd</em></p>
+<ul>
+<li>
+<p><code>-m, --md5</code>:   encrypt the clear text password using the MD5 algorithm</p>
+<ul>
+<li>the command is  like this: <code>echo "user_name:password_plaintext" | chpasswd -m</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="setting-owner-mode-of-folders">Setting Owner &amp; Mode Of Folders<a class="headerlink" href="#setting-owner-mode-of-folders" title="Permanent link"></a></h3>
+<p>Grant user 'lfs' full access to $LFS and sub-directories by making lfs the directory owner:</p>
+<p>Make the <code>$LFS/sources</code> directory writable and sticky. “Sticky” means that even if multiple users have write permission
+on a directory, only the owner of a file can delete the file within a sticky directory.</p>
+<pre><code class="bash">chown -v -R lfs $LFS
+chmod -v a+wt $LFS/sources
+</code></pre>
+
+<p><em>Options: chpasswd</em></p>
+<ul>
+<li><code>-R, --recursive</code>:  operate on files and directories recursively</li>
+</ul>
+<h3 id="creating-lfs-user-files">Creating 'lfs' User Files<a class="headerlink" href="#creating-lfs-user-files" title="Permanent link"></a></h3>
+<p>Set up a good working environment by creating two new startup files for the <code>lfs</code> bash shell.</p>
+<h4 id="bash_profile">bash_profile<a class="headerlink" href="#bash_profile" title="Permanent link"></a></h4>
+<p>When logged on as user, the initial shell is usually a login shell which reads the <code>/etc/profile</code> of the host
+(probably containing some settings and environment variables) and then <strong>.bash_profile</strong>. The <code>exec env -i.../bin/bash</code>
+command in the <strong>.bash_profile</strong> file replaces the running shell with a new one with a completely empty environment,
+except for the HOME, TERM, and PS1 variables. This ensures that no unwanted environment variables from the host system
+leak into the build environment.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We use <code>printf</code> instead of a <code>cat and a heredoc</code> because in the automated script we want to indent ithe line.</p>
+</div>
+<pre><code class="bash">printf &quot;%s\n&quot; &quot;exec env -i HOME=$HOME TERM=$TERM PS1='\u:\w\$ ' /bin/bash&quot; &gt; '/home/lfs/.bash_profile'
+</code></pre>
+
+<h4 id="bashrc">bashrc<a class="headerlink" href="#bashrc" title="Permanent link"></a></h4>
+<p>The new instance of the shell is a non-login shell, which does not read the <code>/etc/profile or .bash_profile files</code>, but
+rather reads the <strong>.bashrc</strong> file instead.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We use <code>printf</code> instead of a <code>cat and a heredoc</code> because in the automated script we want to indent ithe line.</p>
+</div>
+<pre><code class="bash">printf &quot;%s\n&quot; &quot;set +h&quot; \
+    &quot;umask 022&quot; \
+    &quot;LFS=/mnt/lfs&quot; \
+    &quot;LC_ALL=POSIX&quot; \
+    &quot;LFS_TGT=$(uname -m)-lfs-linux-gnu&quot; \
+    &quot;PATH=/tools/bin:/bin:/usr/bin&quot; \
+    &quot;export LFS LC_ALL LFS_TGT PATH&quot; &gt; '/home/lfs/.bashrc'
 </code></pre>
 
 <h2 id="automated-scripts">Automated Scripts<a class="headerlink" href="#automated-scripts" title="Permanent link"></a></h2>

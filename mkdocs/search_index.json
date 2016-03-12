@@ -197,12 +197,12 @@
         }, 
         {
             "location": "/build_install_iso/02_general_preparation/", 
-            "text": "General Preparation\n\uf0c1\n\n\nClean any previous setup (user, group, directories etc..) and create the target directory.\n\n\n\n\n\n\n\nNote\n\n\nYou can execute these steps manually or run automated scripts AFTER reading them:\n\nLink To Automated Scripts\n\n\n\n\nClean Previous Setup\n\uf0c1\n\n\nTo compile \neverything from scratch\n it is best to remove any \nuser\n, \ngroup\n and \ndirectories\n created by a previous\nrun.\n\n\n\n\nHint\n\n\nIf you have downloaded  \nsources\n from a previous build you may want to move them.\n\n\n\n\nRemoving User 'lfs' And Home-Directory\n\uf0c1\n\n\nuserdel --force --remove lfs\n\n\n\n\nOptions:\n\n\n\n\n-f, --force\n: force removal of files, even if not owned by user\n\n\n-r, --remove\n: remove home directory and mail spool\n\n\n\n\nRemoving The Group 'lfs'\n\uf0c1\n\n\nNormally, by removing the user, the group is removed as well. If not sure run the following command.\n\n\ngroupdel lfs\n\n\n\n\nRemoving Any Existing 'lfs' Target Directory\n\uf0c1\n\n\nrm -rf /mnt/lfs\n\n\n\n\nRemoving Any Existing Related 'lfs' Links\n\uf0c1\n\n\n\n\nWarning\n\n\nRemoving host links/directories: Are you sure you want that.\n\n\n\n\nrm -rf /tools\nrm -rf /sources\n\n\n\n\nInstallation Target\n\uf0c1\n\n\nThis guide uses a target directory to build the new P-Linux ISO.\n\n\nCreating A New Target Directory\n\uf0c1\n\n\nmkdir /mnt/lfs\n\n\n\n\nAutomated Scripts\n\uf0c1\n\n\nIf you did not manually execute these steps, you can run the automated scripts:\n\n\n02_general_preparation.sh\n\uf0c1\n\n\nSee also \nHelper Scripts", 
+            "text": "General Preparation\n\uf0c1\n\n\nClean any previous setup (user, group, directories etc..) and create the new setup.\n\n\n\n\n\n\n\nNote\n\n\nYou can execute these steps manually or run automated scripts AFTER reading them:\n\nLink To Automated Scripts\n\n\n\n\nREMEMBER:\n This part is done via the \nroot account\n of the host.\n\n\nClean Previous Setup\n\uf0c1\n\n\nTo compile \neverything from scratch\n it is best to remove any \nuser\n, \ngroup\n and \ndirectories\n created by a previous\nrun.\n\n\n\n\nHint\n\n\nIf you have downloaded  \nsources\n from a previous build you may want to move them.\n\n\n\n\nRemoving User 'lfs' And Home-Directory\n\uf0c1\n\n\nuserdel --force --remove lfs\n\n\n\n\nOptions: userdel\n\n\n\n\n-f, --force\n: force removal of files, even if not owned by user\n\n\n-r, --remove\n: remove home directory and mail spool\n\n\n\n\nRemoving The Group 'lfs'\n\uf0c1\n\n\nNormally, by removing the user, the group is removed as well. If not sure run the following command.\n\n\ngroupdel lfs\n\n\n\n\nRemoving Any Existing 'lfs' Target Directory\n\uf0c1\n\n\nrm -rf /mnt/lfs\n\n\n\n\nRemoving Any Existing Related 'lfs' Links\n\uf0c1\n\n\n\n\nWarning\n\n\nRemoving host links/directories: Are you sure you want that.\n\n\n\n\nrm -rf /tools\nrm -rf /sources\nrm -rf /pkgmk\n\n\n\n\nCreate A New Setup\n\uf0c1\n\n\nExporting The 'LFS' Configuration Variable\n\uf0c1\n\n\nThis guide uses a target directory to build the new P-Linux ISO.\n\n\nHaving this variable set is beneficial in that commands such as \nmkdir -v $LFS/tools\n can be typed literally.\n\n\nexport LFS='/mnt/lfs'\n\n\n\n\nCheck that the LFS variable is set up properly with:\n\n\necho $LFS\n\n\n\n\nWhich MUST return\n\n\n/mnt/lfs\n\n\n\n\nCreating Folders \n Links\n\uf0c1\n\n\nDirectory 'sources'\n\uf0c1\n\n\nA list packages need to be downloaded in order to build a basic P-Linux system. Downloaded packages and patches will need\nto be stored somewhere that is conveniently available throughout the entire build.\n\n\nDirectory 'tools'\n\uf0c1\n\n\nAll programs compiled in the pass-1 will be installed under \n$LFS/tools\n to keep them separate from the programs\ncompiled in the pass-2. The pass-1 compiles temporary tools and will not be a part of the final P-Linux\nsystem. Keeping them in a separate directorymakes it easier to removem them later.\n\n\nDirectory 'pkgmk'\n\uf0c1\n\n\nThis directory is used by the P-Linux Package Management Utilities \np_cards\n to\nunback and compile the programs.\n\n\nLinks\n\uf0c1\n\n\nThe created symlinks enables the toolchain to be compiled so that it always refers to \n/tools\n (or the other links),\nmeaning that all will be accessable in the pass-1 (when we are still using some tools from the host) and in the  pass-2\n(when we are \u201cchrooted\u201d to the new P-Linux folder).\n\n\nThe same goes for the other links.\n\n\nTo Create The Folders \n Links\n\uf0c1\n\n\nmkdir -vp $LFS/{sources,tools,pkgmk}\nln -svf $LFS/tools /\nln -svf $LFS/sources /\nln -svf $LFS/pkgmk /\n\n\n\n\nOptions: mkdir\n\n\n\n\n-p, --parents\n:   no error if existing, make parent directories as needed\n\n\n\n\nCreating 'lfs' Group \n User\n\uf0c1\n\n\nIt is recommend to build the packages in pass-1 as an unprivileged user. To set up a clean working environment, we\ncreate a new user called \nlfs\n as a member of a new group (also named \nlfs\n). The password for this user is also set to\n\nlfs\n.\n\n\ngroupadd lfs\nuseradd -s /bin/bash -g lfs -m -k /dev/null lfs\necho \nlfs:lfs2\n | chpasswd -m\n\n\n\n\nOptions: useradd\n\n\n\n\n\n\n-s, --shell SHELL\n:   login shell of the new account\n\n\nIn our case:\n \n-s /bin/bash\n This makes bash the default shell for user lfs.\n\n\n\n\n\n\n-g, --gid GROUP\n:   name or ID of the primary group of the new account\n\n\nIn our case:\n \n-g lfs\n This option adds user lfs to group lfs.\n\n\n\n\n\n\n-m, --create-home\n:   create the user's home directory\n\n\n\n\n\n\n-k, --skel SKEL_DIR\n:   use this alternative skeleton directory\n\n\nIn our case:\n \n-k /dev/null\n This parameter prevents possible copying of files from a skeleton directory\n(default is /etc/skel) by changing the input location to the special null device.\n\n\n\n\n\n\nlfs\n: at the end is the actual name for the created user.\n\n\n\n\n\n\nOptions: chpasswd\n\n\n\n\n\n\n-m, --md5\n:   encrypt the clear text password using the MD5 algorithm\n\n\n\n\nthe command is  like this: \necho \"user_name:password_plaintext\" | chpasswd -m\n\n\n\n\n\n\n\n\nSetting Owner \n Mode Of Folders\n\uf0c1\n\n\nGrant user 'lfs' full access to $LFS and sub-directories by making lfs the directory owner:\n\n\nMake the \n$LFS/sources\n directory writable and sticky. \u201cSticky\u201d means that even if multiple users have write permission\non a directory, only the owner of a file can delete the file within a sticky directory.\n\n\nchown -v -R lfs $LFS\nchmod -v a+wt $LFS/sources\n\n\n\n\nOptions: chpasswd\n\n\n\n\n-R, --recursive\n:  operate on files and directories recursively\n\n\n\n\nCreating 'lfs' User Files\n\uf0c1\n\n\nSet up a good working environment by creating two new startup files for the \nlfs\n bash shell.\n\n\nbash_profile\n\uf0c1\n\n\nWhen logged on as user, the initial shell is usually a login shell which reads the \n/etc/profile\n of the host\n(probably containing some settings and environment variables) and then \n.bash_profile\n. The \nexec env -i.../bin/bash\n\ncommand in the \n.bash_profile\n file replaces the running shell with a new one with a completely empty environment,\nexcept for the HOME, TERM, and PS1 variables. This ensures that no unwanted environment variables from the host system\nleak into the build environment.\n\n\n\n\nNote\n\n\nWe use \nprintf\n instead of a \ncat and a heredoc\n because in the automated script we want to indent ithe line.\n\n\n\n\nprintf \n%s\\n\n \nexec env -i HOME=$HOME TERM=$TERM PS1='\\u:\\w\\$ ' /bin/bash\n \n '/home/lfs/.bash_profile'\n\n\n\n\nbashrc\n\uf0c1\n\n\nThe new instance of the shell is a non-login shell, which does not read the \n/etc/profile or .bash_profile files\n, but\nrather reads the \n.bashrc\n file instead.\n\n\n\n\nNote\n\n\nWe use \nprintf\n instead of a \ncat and a heredoc\n because in the automated script we want to indent ithe line.\n\n\n\n\nprintf \n%s\\n\n \nset +h\n \\\n    \numask 022\n \\\n    \nLFS=/mnt/lfs\n \\\n    \nLC_ALL=POSIX\n \\\n    \nLFS_TGT=$(uname -m)-lfs-linux-gnu\n \\\n    \nPATH=/tools/bin:/bin:/usr/bin\n \\\n    \nexport LFS LC_ALL LFS_TGT PATH\n \n '/home/lfs/.bashrc'\n\n\n\n\nAutomated Scripts\n\uf0c1\n\n\nIf you did not manually execute these steps, you can run the automated scripts:\n\n\n02_general_preparation.sh\n\uf0c1\n\n\nSee also \nHelper Scripts", 
             "title": "General Preparation"
         }, 
         {
             "location": "/build_install_iso/02_general_preparation/#general-preparation", 
-            "text": "Clean any previous setup (user, group, directories etc..) and create the target directory.    Note  You can execute these steps manually or run automated scripts AFTER reading them: Link To Automated Scripts", 
+            "text": "Clean any previous setup (user, group, directories etc..) and create the new setup.    Note  You can execute these steps manually or run automated scripts AFTER reading them: Link To Automated Scripts   REMEMBER:  This part is done via the  root account  of the host.", 
             "title": "General Preparation"
         }, 
         {
@@ -212,7 +212,7 @@
         }, 
         {
             "location": "/build_install_iso/02_general_preparation/#removing-user-lfs-and-home-directory", 
-            "text": "userdel --force --remove lfs  Options:   -f, --force : force removal of files, even if not owned by user  -r, --remove : remove home directory and mail spool", 
+            "text": "userdel --force --remove lfs  Options: userdel   -f, --force : force removal of files, even if not owned by user  -r, --remove : remove home directory and mail spool", 
             "title": "Removing User 'lfs' And Home-Directory"
         }, 
         {
@@ -227,18 +227,73 @@
         }, 
         {
             "location": "/build_install_iso/02_general_preparation/#removing-any-existing-related-lfs-links", 
-            "text": "Warning  Removing host links/directories: Are you sure you want that.   rm -rf /tools\nrm -rf /sources", 
+            "text": "Warning  Removing host links/directories: Are you sure you want that.   rm -rf /tools\nrm -rf /sources\nrm -rf /pkgmk", 
             "title": "Removing Any Existing Related 'lfs' Links"
         }, 
         {
-            "location": "/build_install_iso/02_general_preparation/#installation-target", 
-            "text": "This guide uses a target directory to build the new P-Linux ISO.", 
-            "title": "Installation Target"
+            "location": "/build_install_iso/02_general_preparation/#create-a-new-setup", 
+            "text": "", 
+            "title": "Create A New Setup"
         }, 
         {
-            "location": "/build_install_iso/02_general_preparation/#creating-a-new-target-directory", 
-            "text": "mkdir /mnt/lfs", 
-            "title": "Creating A New Target Directory"
+            "location": "/build_install_iso/02_general_preparation/#exporting-the-lfs-configuration-variable", 
+            "text": "This guide uses a target directory to build the new P-Linux ISO.  Having this variable set is beneficial in that commands such as  mkdir -v $LFS/tools  can be typed literally.  export LFS='/mnt/lfs'  Check that the LFS variable is set up properly with:  echo $LFS  Which MUST return  /mnt/lfs", 
+            "title": "Exporting The 'LFS' Configuration Variable"
+        }, 
+        {
+            "location": "/build_install_iso/02_general_preparation/#creating-folders-links", 
+            "text": "", 
+            "title": "Creating Folders &amp; Links"
+        }, 
+        {
+            "location": "/build_install_iso/02_general_preparation/#directory-sources", 
+            "text": "A list packages need to be downloaded in order to build a basic P-Linux system. Downloaded packages and patches will need\nto be stored somewhere that is conveniently available throughout the entire build.", 
+            "title": "Directory 'sources'"
+        }, 
+        {
+            "location": "/build_install_iso/02_general_preparation/#directory-tools", 
+            "text": "All programs compiled in the pass-1 will be installed under  $LFS/tools  to keep them separate from the programs\ncompiled in the pass-2. The pass-1 compiles temporary tools and will not be a part of the final P-Linux\nsystem. Keeping them in a separate directorymakes it easier to removem them later.", 
+            "title": "Directory 'tools'"
+        }, 
+        {
+            "location": "/build_install_iso/02_general_preparation/#directory-pkgmk", 
+            "text": "This directory is used by the P-Linux Package Management Utilities  p_cards  to\nunback and compile the programs.", 
+            "title": "Directory 'pkgmk'"
+        }, 
+        {
+            "location": "/build_install_iso/02_general_preparation/#links", 
+            "text": "The created symlinks enables the toolchain to be compiled so that it always refers to  /tools  (or the other links),\nmeaning that all will be accessable in the pass-1 (when we are still using some tools from the host) and in the  pass-2\n(when we are \u201cchrooted\u201d to the new P-Linux folder).  The same goes for the other links.", 
+            "title": "Links"
+        }, 
+        {
+            "location": "/build_install_iso/02_general_preparation/#to-create-the-folders-links", 
+            "text": "mkdir -vp $LFS/{sources,tools,pkgmk}\nln -svf $LFS/tools /\nln -svf $LFS/sources /\nln -svf $LFS/pkgmk /  Options: mkdir   -p, --parents :   no error if existing, make parent directories as needed", 
+            "title": "To Create The Folders &amp; Links"
+        }, 
+        {
+            "location": "/build_install_iso/02_general_preparation/#creating-lfs-group-user", 
+            "text": "It is recommend to build the packages in pass-1 as an unprivileged user. To set up a clean working environment, we\ncreate a new user called  lfs  as a member of a new group (also named  lfs ). The password for this user is also set to lfs .  groupadd lfs\nuseradd -s /bin/bash -g lfs -m -k /dev/null lfs\necho  lfs:lfs2  | chpasswd -m  Options: useradd    -s, --shell SHELL :   login shell of the new account  In our case:   -s /bin/bash  This makes bash the default shell for user lfs.    -g, --gid GROUP :   name or ID of the primary group of the new account  In our case:   -g lfs  This option adds user lfs to group lfs.    -m, --create-home :   create the user's home directory    -k, --skel SKEL_DIR :   use this alternative skeleton directory  In our case:   -k /dev/null  This parameter prevents possible copying of files from a skeleton directory\n(default is /etc/skel) by changing the input location to the special null device.    lfs : at the end is the actual name for the created user.    Options: chpasswd    -m, --md5 :   encrypt the clear text password using the MD5 algorithm   the command is  like this:  echo \"user_name:password_plaintext\" | chpasswd -m", 
+            "title": "Creating 'lfs' Group &amp; User"
+        }, 
+        {
+            "location": "/build_install_iso/02_general_preparation/#setting-owner-mode-of-folders", 
+            "text": "Grant user 'lfs' full access to $LFS and sub-directories by making lfs the directory owner:  Make the  $LFS/sources  directory writable and sticky. \u201cSticky\u201d means that even if multiple users have write permission\non a directory, only the owner of a file can delete the file within a sticky directory.  chown -v -R lfs $LFS\nchmod -v a+wt $LFS/sources  Options: chpasswd   -R, --recursive :  operate on files and directories recursively", 
+            "title": "Setting Owner &amp; Mode Of Folders"
+        }, 
+        {
+            "location": "/build_install_iso/02_general_preparation/#creating-lfs-user-files", 
+            "text": "Set up a good working environment by creating two new startup files for the  lfs  bash shell.", 
+            "title": "Creating 'lfs' User Files"
+        }, 
+        {
+            "location": "/build_install_iso/02_general_preparation/#bash_profile", 
+            "text": "When logged on as user, the initial shell is usually a login shell which reads the  /etc/profile  of the host\n(probably containing some settings and environment variables) and then  .bash_profile . The  exec env -i.../bin/bash \ncommand in the  .bash_profile  file replaces the running shell with a new one with a completely empty environment,\nexcept for the HOME, TERM, and PS1 variables. This ensures that no unwanted environment variables from the host system\nleak into the build environment.   Note  We use  printf  instead of a  cat and a heredoc  because in the automated script we want to indent ithe line.   printf  %s\\n   exec env -i HOME=$HOME TERM=$TERM PS1='\\u:\\w\\$ ' /bin/bash    '/home/lfs/.bash_profile'", 
+            "title": "bash_profile"
+        }, 
+        {
+            "location": "/build_install_iso/02_general_preparation/#bashrc", 
+            "text": "The new instance of the shell is a non-login shell, which does not read the  /etc/profile or .bash_profile files , but\nrather reads the  .bashrc  file instead.   Note  We use  printf  instead of a  cat and a heredoc  because in the automated script we want to indent ithe line.   printf  %s\\n   set +h  \\\n     umask 022  \\\n     LFS=/mnt/lfs  \\\n     LC_ALL=POSIX  \\\n     LFS_TGT=$(uname -m)-lfs-linux-gnu  \\\n     PATH=/tools/bin:/bin:/usr/bin  \\\n     export LFS LC_ALL LFS_TGT PATH    '/home/lfs/.bashrc'", 
+            "title": "bashrc"
         }, 
         {
             "location": "/build_install_iso/02_general_preparation/#automated-scripts", 
