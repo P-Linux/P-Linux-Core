@@ -107,6 +107,10 @@
                             <a href="../../about/release-notes/">Release Notes</a>
                         </li>
                     
+                        <li >
+                            <a href="../../about/p_linux_vs_nutyx_linux/">P-Linux vs. NuTyX-Linux</a>
+                        </li>
+                    
                     </ul>
                 </li>
             
@@ -148,6 +152,8 @@
         
             <li><a href="#exporting-the-lfs-variable">Exporting The 'LFS' Variable</a></li>
         
+            <li><a href="#checking-architecture">Checking Architecture</a></li>
+        
             <li><a href="#clean-previous-setup">Clean Previous Setup</a></li>
         
             <li><a href="#create-a-new-setup">Create A New Setup</a></li>
@@ -165,8 +171,8 @@
 <hr />
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>You can execute these steps manually or run automated scripts AFTER reading them:
-<a href="#automated-scripts">Link To Automated Scripts</a></p>
+<p>There is no need to execute these steps manually, they are here for information what needs to be done.
+Afterwards execute the automated scripts: <a href="#automated-scripts">Link To Automated Scripts</a></p>
 </div>
 <p><strong>REMEMBER:</strong> This part is done via the <strong>root account</strong> of the host.</p>
 <h2 id="exporting-the-lfs-variable">Exporting The 'LFS' Variable<a class="headerlink" href="#exporting-the-lfs-variable" title="Permanent link"></a></h2>
@@ -175,12 +181,12 @@
 <pre><code class="bash">export LFS='/mnt/lfs'
 </code></pre>
 
-<p>Check that the LFS variable is set up properly with:</p>
-<pre><code class="bash">echo $LFS
+<h2 id="checking-architecture">Checking Architecture<a class="headerlink" href="#checking-architecture" title="Permanent link"></a></h2>
+<pre><code class="bash">uname -m
 </code></pre>
 
 <p>Which MUST return</p>
-<pre><code class="text">/mnt/lfs
+<pre><code class="text">x86_64
 </code></pre>
 
 <h2 id="clean-previous-setup">Clean Previous Setup<a class="headerlink" href="#clean-previous-setup" title="Permanent link"></a></h2>
@@ -269,7 +275,7 @@ create a new user called <code>lfs</code> as a member of a new group (also named
 <code>lfs</code>.</p>
 <pre><code class="bash">groupadd lfs
 useradd -s /bin/bash -g lfs -m -k /dev/null lfs
-echo &quot;lfs:lfs2&quot; | chpasswd -m
+echo &quot;lfs:lfs&quot; | chpasswd -m
 </code></pre>
 
 <p><em>Options: useradd</em></p>
@@ -315,7 +321,7 @@ chmod -v a+wt $LFS/sources
 <ul>
 <li><code>-R, --recursive</code>:  operate on files and directories recursively</li>
 </ul>
-<h3 id="creating-lfs-user-files">Creating 'lfs' User Files<a class="headerlink" href="#creating-lfs-user-files" title="Permanent link"></a></h3>
+<h3 id="creating-lfs-user-files-directories">Creating 'lfs' User Files &amp; Directories<a class="headerlink" href="#creating-lfs-user-files-directories" title="Permanent link"></a></h3>
 <p>Set up a good working environment by creating two new startup files for the <code>lfs</code> bash shell.</p>
 <h4 id="bash_profile">bash_profile<a class="headerlink" href="#bash_profile" title="Permanent link"></a></h4>
 <p>When logged on as user, the initial shell is usually a login shell which reads the <code>/etc/profile</code> of the host
@@ -344,6 +350,10 @@ rather reads the <strong>.bashrc</strong> file instead.</p>
     &quot;LFS_TGT=$(uname -m)-lfs-linux-gnu&quot; \
     &quot;PATH=/tools/bin:/bin:/usr/bin&quot; \
     &quot;export LFS LC_ALL LFS_TGT PATH&quot; &gt; '/home/lfs/.bashrc'
+</code></pre>
+
+<h4 id="creating-user-lfs-log-directory">Creating user 'lfs log' Directory<a class="headerlink" href="#creating-user-lfs-log-directory" title="Permanent link"></a></h4>
+<pre><code class="bash">mkdir -p /home/lfs/logs
 </code></pre>
 
 <hr />

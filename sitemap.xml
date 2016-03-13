@@ -4,7 +4,7 @@
     
     <url>
      <loc>https://P-Linux.github.io/P-Linux-Core//</loc>
-     <lastmod>2016-03-11</lastmod>
+     <lastmod>2016-03-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -13,37 +13,37 @@
         
     <url>
      <loc>https://P-Linux.github.io/P-Linux-Core//build_install_iso/00_build_an_install_iso/</loc>
-     <lastmod>2016-03-11</lastmod>
+     <lastmod>2016-03-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://P-Linux.github.io/P-Linux-Core//build_install_iso/01_host_system_requirements/</loc>
-     <lastmod>2016-03-11</lastmod>
+     <lastmod>2016-03-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://P-Linux.github.io/P-Linux-Core//build_install_iso/02_general_preparation/</loc>
-     <lastmod>2016-03-11</lastmod>
+     <lastmod>2016-03-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://P-Linux.github.io/P-Linux-Core//build_install_iso/03_optional_preparation/</loc>
-     <lastmod>2016-03-11</lastmod>
+     <lastmod>2016-03-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://P-Linux.github.io/P-Linux-Core//build_install_iso/04_pass_1/</loc>
-     <lastmod>2016-03-11</lastmod>
+     <lastmod>2016-03-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://P-Linux.github.io/P-Linux-Core//build_install_iso/05_pass_2/</loc>
-     <lastmod>2016-03-11</lastmod>
+     <lastmod>2016-03-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -53,19 +53,25 @@
         
     <url>
      <loc>https://P-Linux.github.io/P-Linux-Core//about/readme/</loc>
-     <lastmod>2016-03-11</lastmod>
+     <lastmod>2016-03-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://P-Linux.github.io/P-Linux-Core//about/license/</loc>
-     <lastmod>2016-03-11</lastmod>
+     <lastmod>2016-03-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://P-Linux.github.io/P-Linux-Core//about/release-notes/</loc>
-     <lastmod>2016-03-11</lastmod>
+     <lastmod>2016-03-13</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://P-Linux.github.io/P-Linux-Core//about/p_linux_vs_nutyx_linux/</loc>
+     <lastmod>2016-03-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
         

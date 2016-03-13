@@ -6,11 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <meta name="author" content="peter1000">
-        <link rel="canonical" href="https://P-Linux.github.io/P-Linux-Core/about/readme/">
+        <link rel="canonical" href="https://P-Linux.github.io/P-Linux-Core/about/p_linux_vs_nutyx_linux/">
         <link rel="shortcut icon" href="../../images/p_linux_favicon.ico">
         
 
-	<title>Readme - P-Linux-Core</title>
+	<title>P-Linux vs. NuTyX-Linux - P-Linux-Core</title>
 
         <link href="../../css/bootstrap-3.0.3.min.css" rel="stylesheet">
         <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -95,8 +95,8 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
-                        <li class="active">
-                            <a href="./">Readme</a>
+                        <li >
+                            <a href="../readme/">Readme</a>
                         </li>
                     
                         <li >
@@ -107,8 +107,8 @@
                             <a href="../release-notes/">Release Notes</a>
                         </li>
                     
-                        <li >
-                            <a href="../p_linux_vs_nutyx_linux/">P-Linux vs. NuTyX-Linux</a>
+                        <li class="active">
+                            <a href="./">P-Linux vs. NuTyX-Linux</a>
                         </li>
                     
                     </ul>
@@ -120,12 +120,12 @@
             <!-- Search, Navigation and Repo links -->
             <ul class="nav navbar-nav navbar-right">
                 <li >
-                    <a rel="next" href="../../build_install_iso/05_pass_2/">
+                    <a rel="next" href="../release-notes/">
                         <i class="fa fa-arrow-left"></i> Previous
                     </a>
                 </li>
-                <li >
-                    <a rel="prev" href="../license/">
+                <li class="disabled">
+                    <a rel="prev" >
                         Next <i class="fa fa-arrow-right"></i>
                     </a>
                 </li>
@@ -148,29 +148,56 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#p-linux-core">P-Linux-Core</a></li>
+        <li class="main active"><a href="#p-linux-vs-nutyx-linux">P-Linux vs. NuTyX-Linux</a></li>
         
-            <li><a href="#web-presence">Web Presence</a></li>
+            <li><a href="#01-acknowledgment">01. Acknowledgment</a></li>
+        
+            <li><a href="#02-architecture">02. Architecture</a></li>
+        
+            <li><a href="#03-language-support">03. Language Support</a></li>
+        
+            <li><a href="#04-package-manager">04. Package Manager</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<div align="center">
-    <a href="https://github.com/P-Linux/">
-        <img src="images/p-linux-logo.png" alt="P-Linux LOGO" title="The P-Linux Organization.">
-    </a>
-</div>
-
-<h1 id="p-linux-core">P-Linux-Core<a class="headerlink" href="#p-linux-core" title="Permanent link"></a></h1>
-<p align="center">Scripts, programs, documentation for compiling, installing and using a P-Linux system.</p>
+<h1 id="p-linux-vs-nutyx-linux">P-Linux vs. NuTyX-Linux<a class="headerlink" href="#p-linux-vs-nutyx-linux" title="Permanent link"></a></h1>
+<p align="center">Main differences between P-Linux and NuTyX-Linux.</p>
 
 <hr />
-<h2 id="web-presence">Web Presence<a class="headerlink" href="#web-presence" title="Permanent link"></a></h2>
+<h2 id="01-acknowledgment">01. Acknowledgment<a class="headerlink" href="#01-acknowledgment" title="Permanent link"></a></h2>
+<p><strong>Many thanks to the author of the NuTyX-Linux project: Thierry Nuttens and all the other contributors.</strong></p>
+<p><a href="https://github.com/P-Linux">P-Linux</a> is a <a href="https://github.com/NuTyX">NuTyX-Linux</a> derived Linux system,
+which means it has much in common with NuTyX-Linux. Below are some of the differences.</p>
+<h2 id="02-architecture">02. Architecture<a class="headerlink" href="#02-architecture" title="Permanent link"></a></h2>
+<p><strong>NuTyX-Linux</strong>: does support more architectures: e.g. <code>i686</code> and more recently <code>ARM</code>.</p>
+<p><strong>P-Linux</strong>: is only for 64-bit (x86_64) architecture. At the moment there are no plans to support any other 
+architecture.</p>
+<h2 id="03-language-support">03. Language Support<a class="headerlink" href="#03-language-support" title="Permanent link"></a></h2>
+<h3 id="documentation">Documentation<a class="headerlink" href="#documentation" title="Permanent link"></a></h3>
+<p><strong>NuTyX-Linux</strong>: main documentation is in French with partial support for English and some other languages.</p>
+<p><strong>P-Linux</strong>: The documentation is mostly rewritten from scratch: mainly in English. 
+There are future plans to add German and Portuguese language documentation.</p>
+<h3 id="scripts">Scripts<a class="headerlink" href="#scripts" title="Permanent link"></a></h3>
+<p><strong>P-Linux</strong>: the P-Linux-Core scripts are rewritten from scratch with support for <em>gettext native language translation</em>.</p>
+<p>NOTE: Some of those changes are backported to NuTyX-Linux.</p>
+<h2 id="04-package-manager">04. Package Manager<a class="headerlink" href="#04-package-manager" title="Permanent link"></a></h2>
+<p><strong>P-Linux</strong>: Package Management Utilities <a href="https://github.com/P-Linux/p_cards/">p_cards</a> is based on a fork 
+(07. March 2016) of the original <a href="https://github.com/NuTyX/cards">NuTyX-Linux cards</a>.</p>
+<p><strong>p_cards</strong> tries to be compatible with the original cards package.</p>
+<h3 id="features-differences">Features - Differences<a class="headerlink" href="#features-differences" title="Permanent link"></a></h3>
+<p><strong>P-Linux</strong>: Thiese features  below were backported to NuTyX-Linux cards as experiemental.</p>
 <ul>
-<li>P-Linux-Core <a href="https://P-Linux.github.io/P-Linux-Core/">web site - documentation</a></li>
-<li>P-Linux-Core <a href="https://github.com/P-Linux/P-Linux-Core.git/">github repository</a></li>
+<li>Added support for sources of version control systems: <code>Bazaar, Git, Subversion, and Mercurial</code></li>
+<li>Added support to rename source files</li>
+<li>Added support to skip auto-extraction per source array entry</li>
+<li>Added support to <code>pkgmk.in</code> for gettext native language translation</li>
+</ul>
+<p><strong>P-Linux</strong>: </p>
+<ul>
+<li>Added support to auto-extract source files of type: <code>rpm and deb</code></li>
 </ul></div>
         </div>
 
