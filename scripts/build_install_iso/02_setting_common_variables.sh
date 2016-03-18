@@ -1,6 +1,5 @@
 #!/bin/bash
 
-if [ -z "$BASH" ]; then printf "\nWRONG SHELL: '%s' SCRIPT needs 'bash'\n\n" "$(ps -p $$ -ocomm=)"; exit 1; fi
 THIS_SCRIPT_PATH="$(readlink -f "$(type -P $0 || echo $0)")"
 THIS_SCRIPT_DIR="$(dirname "$THIS_SCRIPT_PATH")"
 source $THIS_SCRIPT_DIR/../p_linux_common_func.sh

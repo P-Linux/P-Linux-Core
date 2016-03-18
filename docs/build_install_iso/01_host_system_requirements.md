@@ -101,10 +101,10 @@ Bison: (/usr/bin/yacc should be a link to bison or small script that executes bi
 ### Diffutils 3.3
 
 
-### Findutils 4.4.2
+### Gnu Findutils 4.4.2
 
 
-### Gawk 4.1.3
+### Gnu Gawk 4.1.3
 
 Gawk: (/usr/bin/awk should be a link to gawk)
 
@@ -162,10 +162,35 @@ Gawk: (/usr/bin/awk should be a link to gawk)
 ### Xz 5.2.2
 
 
+### Util-linux 2.27
+
+
+### Ncurses 6.0.20150808
+
+
+### Wget 1.17.1   (Optional)   
+
+Required: one of 'wget or curl' but both are needed to pass some tests
+
+
+### Curl 7.47.1   (Optional)
+
+Required: one of 'wget or curl' but both are needed to pass some tests
+
+
 ### Git 2.7.1
 
 
-### Wget 1.17.1
+### Subversion 1.9.3 (r1718519)   (Optional)
+
+Required for packages which fetch there sources from subversion repos.
 
 
-### Util-linux 2.27
+### Mercurial 3.7.1   (Optional)
+
+Required for packages which fetch there sources from mercurial repos.
+
+
+### Bazaar 2.6.0   (Optional)
+
+Required for packages which fetch there sources from bazaar repos.

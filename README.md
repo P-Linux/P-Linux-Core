@@ -13,6 +13,8 @@
 ---
 
 
+# NOTE: THIS IS CURRENTLY REWRITTEN
+
 ## Web Presence
 
 * P-Linux-Core [web site - documentation](https://P-Linux.github.io/P-Linux-Core/)

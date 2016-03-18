@@ -39,7 +39,15 @@ There are future plans to add German and Portuguese language documentation.
 NOTE: Some of those changes are backported to NuTyX-Linux.
 
 
-## 04. Package Manager
+## 0.4 Pkgfile Differences
+
+### P-Linux Pkgfile-Header
+
+**P-Linux** changed the Pkgfile-header to following format:
+see [Pkgfile-Header](../user_guide/01_pkgfile.md#pkgfile-header)
+
+
+## 05. Package Manager
 
 **P-Linux**: Package Management Utilities [p_cards](https://github.com/P-Linux/p_cards/) is based on a fork 
 (07. March 2016) of the original [NuTyX-Linux cards](https://github.com/NuTyX/cards).

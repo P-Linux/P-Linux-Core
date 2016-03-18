@@ -1,33 +1,35 @@
 #************************************************************************************************************************
 #
-#   P-Linux COMMON SHELL FUNCTIONS: **peter1000**
+#   P-Linux COMMON SHELL FUNCTIONS: https://github.com/P-Linux/
+#   Copyright (c) 2016, **peter1000** <https://github.com/peter1000> (License GPL2 or later)
 #
-#
-#   USAGE with in a shell script: source this file within your shell script
+#   * USAGE with in a shell script: source this file within your shell script
 #                                 To use 'interrupted' set a trap
 #
-#       EXAMPLE:
+#   * EXAMPLE
 #
-#       if [ -z "$BASH" ]; then printf "\nWRONG SHELL: '%s' SCRIPT needs 'bash'\n\n" "$(ps -p $$ -ocomm=)"; exit 1; fi
+#       if [ -z "$BASH" ]; then printf "\nERROR SHELL: '%s' SCRIPT needs 'bash'\n\n" "$(ps -p $$ -ocomm=)"; exit 1; fi
 #       THIS_SCRIPT_PATH="$(readlink -f "$(type -P $0 || echo $0)")"
 #       THIS_SCRIPT_DIR="$(dirname "$THIS_SCRIPT_PATH")"
 #       source $THIS_SCRIPT_DIR/../p_linux_common_func.sh
 #       trap "interrupted" SIGHUP SIGINT SIGQUIT SIGTERM
 #       msg_format
 #       check_have_gettext  $THIS_SCRIPT_PATH
-#
+#       
+#       get_user_permission_to_run "root"
 #
 #************************************************************************************************************************
+
 
 #************************************************************************************************************************
 #
 #   MESSAGES FUNCTIONS - functions for outputting messages.
 #
-# USAGE EXAMPLE - MESSAGE FORMAT: To support translation the messages format should be:
+#   * USAGE EXAMPLE - MESSAGE FORMAT: To support translation the messages format should be:
 #
-#   plain "$(gettext "Some Info...")"
-#   plain "$(gettext "The files path is: %s")"  "$FILEPATH"
-#   plain "$(gettext "Source file <%s>.")" "$(get_filename "$1")"
+#       plain "$(gettext "Some Info...")"
+#       plain "$(gettext "The files path is: %s")"  "$FILEPATH"
+#       plain "$(gettext "Source file:  %s")" "$(get_filename "$1")"
 #
 #************************************************************************************************************************
 
@@ -115,32 +117,31 @@ error2() {
 
 abort() {
 	local MESG=$1; shift
-    printf "${MAGENTA_MSG}\n=======> $(gettext "ABORTING....\n")${ALL_OFF_MSG}" >&2
-    printf "${BLUE_MSG}    ->${ALL_OFF_MSG}${BOLD_MSG} ${MESG}${ALL_OFF_MSG}\n\n" "$@" >&2
+    printf "${MAGENTA_MSG}\n\n=======> $(gettext "ABORTING....")${ALL_OFF_MSG}\n" >&2
+    printf "${RED_MSG}    ->${ALL_OFF_MSG}${BOLD_MSG} ${MESG}${ALL_OFF_MSG}\n\n" "$@" >&2
     exit 1
 }
 
 interrupted() {
-    printf "${RED_MSG}\n======> $(gettext "ERROR:")${ALL_OFF_MSG}${BOLD_MSG} Interrupted${ALL_OFF_MSG}\n" >&2
-	exit 1
+    abort "$(gettext "INTERRUPTED")"
 }
 
 
 #*****************************************
 #
-#   Color Message
+#   <color_mesg>
 #
 #   ARGUMENT: 'FORMAT_MSG' SHOULD BE one of the defined variables of function: <msg_format>
 #
 #   ALL_OFF_MSG, BOLD_MSG, RED_MSG, GREEN_MSG, YELLOW_MSG, BLUE_MSG, MAGENTA_MSG
 #
-# USAGE EXAMPLE
+#   * USAGE EXAMPLE
 #
-#   color_mesg FORMAT_MSG Message-Text
-# 
-#    EXAMPLE:
+#       color_mesg FORMAT_MSG Message-Text
 #
-#  color_mesg $GREEN_MSG "$(gettext "The files path is: %s")"  "$FILEPATH"
+#   * EXAMPLE
+#
+#       color_mesg $GREEN_MSG "$(gettext "The files path is: %s")"  "$FILEPATH"
 #
 color_mesg() {
     local FORMAT_MSG=$1
@@ -149,7 +150,7 @@ color_mesg() {
 }
 
 
-# color_header: USAGE EXAMPLE: similar to function <color_mesg>
+# <color_header>: USAGE EXAMPLE: similar to function <color_mesg>
 color_header() {
     local FORMAT_MSG=$1
     local MESG=$2; shift
@@ -163,7 +164,7 @@ color_header() {
     printf "${ALL_OFF_MSG}\n" >&1
 }
 
-# color_header: USAGE EXAMPLE: similar to function <color_mesg>
+# <color_header>: USAGE EXAMPLE: similar to function <color_mesg>
 color_header_i() {
     local FORMAT_MSG=$1
     local MESG=$2; shift
@@ -179,22 +180,23 @@ color_header_i() {
 
 #*****************************************
 #
-#   Horizontal Line
+#   <hrl>
 #
 #   ARGUMENT: 'FORMAT_MSG' SHOULD BE one of the defined variables of function: <msg_format>
 #
 #   ALL_OFF_MSG, BOLD_MSG, RED_MSG, GREEN_MSG, YELLOW_MSG, BLUE_MSG, MAGENTA_MSG
 #
-# USAGE EXAMPLE
+#   * USAGE EXAMPLE
 #
-#   hrl FORMAT_MSG 'START_TXT' 'REPEATED_TEXT' REPEAT_NUMBER 'END_TEXT'
+#       hrl FORMAT_MSG 'START_TXT' 'REPEATED_TEXT' REPEAT_NUMBER 'END_TEXT'
 # 
-#    EXAMPLE:
+#   * EXAMPLE
 #
-#  hrl $GREEN_MSG '#' '=' 80 '#'
+#       hrl $GREEN_MSG '#' '=' 25 '#'
 #
-#   OUTPUT: #=========================#
+#       * OUTPUT: 
 #
+#           #=========================#
 #
 hrl() {
     local FORMAT_MSG=$1
@@ -211,8 +213,6 @@ hrl() {
 }
 
 
-
-
 #************************************************************************************************************************
 #   DIVERSE FUNCTION
 #************************************************************************************************************************
@@ -220,11 +220,54 @@ hrl() {
 check_have_gettext() {
     local script_path=$1
     if [ ! "$(type -p gettext)" ]; then
-        printf "${MAGENTA_MSG}\n====> ABORTING....\n${ALL_OFF_MSG}" >&2
+        printf "${MAGENTA_MSG}\n====> ABORTING....${ALL_OFF_MSG}\n" >&2
         printf "${BLUE_MSG}    ->${ALL_OFF_MSG}${BOLD_MSG} CAN'T RUN SCRIPT: <%s>${ALL_OFF_MSG}\n\n" "$script_path" >&2
         printf "${YELLOW_MSG}    ->${ALL_OFF_MSG}${BOLD_MSG} MISSING COMMAND: <gettext>${ALL_OFF_MSG}\n\n" >&2
         exit 1
     fi
+}
+
+
+#*****************************************
+#
+#   <get_user_permission_to_run>
+#
+#   General request for a manual input of the user.
+#
+#   Optional Argument $1: 'CHECK_USER' name under which the script must run
+#
+#   * USAGE EXAMPLE
+#
+#       get_user_permission_to_run
+#       get_user_permission_to_run "root"
+# 
+#
+get_user_permission_to_run() {
+    local CHECK_USER=$1
+
+    local MSG1="$(gettext "This script MUST run under User-Account: '%s'")"
+    local MSG2="$(gettext "INFO: Please run this script in %sMAXIMIZED%s terminal.")"
+    local MSG3="$(gettext "To %sINTERRUPT%s at any time press [%sctrl+c%s].")"
+    local MSG4="$(gettext "To %sCONTINUE%s type: [%sYES%s]: ")"
+
+
+    echo 
+    if [[ -n "$CHECK_USER" ]]; then
+        if [[ "$(whoami)" != "$CHECK_USER" ]]; then
+            printf "${BLUE_MSG}        ${MSG1}${ALL_OFF_MSG}\n" "$CHECK_USER" >&1
+            abort "$(gettext "Got EUID: '%s' USER: '%s'")" "$EUID" "$(whoami)"
+        fi
+    fi
+	printf "${GREEN_MSG}====> ${ALL_OFF_MSG}${MSG2}\n" "$BOLD_MSG" "$ALL_OFF_MSG" >&1
+    printf "        ${MSG3}\n\n" "$BOLD_MSG" "$ALL_OFF_MSG" "$GREEN_MSG" "$ALL_OFF_MSG" >&1
+    printf "                ${MSG4}" "$BOLD_MSG" "$ALL_OFF_MSG" "$GREEN_MSG" "$ALL_OFF_MSG" >&1
+    read USER_INPUT
+    [[ "$USER_INPUT" == 'YES' ]] || exit 1
+    echo
+}
+
+get_basename() {
+    printf "%s\n" "${1##*/}"
 }
 
 

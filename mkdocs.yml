@@ -14,8 +14,13 @@ pages:
     - 02. Setting Common Variables:                 build_install_iso/02_setting_common_variables.md
     - 03. General Preparation:                      build_install_iso/03_general_preparation.md
     - 04. Optional Preparation:                     build_install_iso/04_optional_preparation.md
-    - 05. PASS-1 (Constructing A Temporary System): build_install_iso/05_pass_1.md
-    - 06. PASS-2 (Building A Base P-Linux System):  build_install_iso/06_pass_2.md
+    - 05. Download Sources:                         build_install_iso/05_download_sources.md
+    - 06. PASS-1 (Constructing A Temporary System): build_install_iso/06_pass_1.md
+    - 07. PASS-2 (Building A Base P-Linux System):  build_install_iso/07_pass_2.md
+- User Guide:
+    - Introduction: user_guide/00_introduction.md
+    - Pkgfile:      user_guide/01_pkgfile.md
+    
 - About:
     - Readme: about/readme.md
     - License: about/license.md

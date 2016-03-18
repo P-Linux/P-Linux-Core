@@ -247,9 +247,9 @@ set +h
 umask 022
 LFS=$LFS
 LC_ALL=POSIX
-LFS_TGT=$ARCH-lfs-linux-gnu
+LFS_TARGET=$ARCH-lfs-linux-gnu
 PATH=/tools/bin:/bin:/usr/bin
-export LFS LC_ALL LFS_TGT PATH
+export LFS LC_ALL LFS_TARGET PATH
 EOF
 ```
 

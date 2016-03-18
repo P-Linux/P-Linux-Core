@@ -6,7 +6,7 @@
 
 ## v0.1.0 (xxxx-xx-xx)
 
-* Renames: Implements: Build A P-Linux Install ISO
+* Implements: Build A P-Linux Install ISO
 
 
 ## History
